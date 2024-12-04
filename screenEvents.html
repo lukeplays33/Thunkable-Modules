@@ -86,11 +86,12 @@ body,
       e.preventDefault();
 
       console.log(e.dataTransfer.files[0]);
+      document.body.style.backgorundimage = `url("${e.dataTransfer.files[0]}")`;
 
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'drop',
         name: e.dataTransfer.files[0].name,
-        type: e.dataTransfer.files[0].type,
+        file: e.dataTransfer.files[0],
         size: e.dataTransfer.files[0].size,
         lastModifiedDate: e.dataTransfer.files[0].lastModifiedDate;
       }));
