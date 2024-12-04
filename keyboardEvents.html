@@ -1,0 +1,111 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+
+
+    <title>CodePen - A Pen by lukeplays33</title>
+
+    <link rel="canonical" href="https://codepen.io/lukeplays33/pen/JjQOmMb">
+
+
+
+
+
+
+
+
+</head>
+<style>
+    body,
+    html {
+        margin: 0px;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: TRANSPARENT;
+    }
+
+    #focus {
+        height: 0px;
+        width: 0px;
+        border-width: 0px;
+        border-color: TRANSPARENT;
+
+        background-color: TRANSPARENT;
+        outline: none;
+    }
+
+    #focus:focus {
+        border-width: 0px;
+        border-color: TRANSPARENT;
+
+        background-color: TRANSPARENT;
+
+        outline: none;
+    }
+</style>
+
+<body>
+    <input id="focus"></input>
+
+    <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
+        type="text/javascript"></script>
+
+    <script id="rendered-js">
+
+        ThunkableWebviewerExtension.receiveMessage(function (message) {
+            document.getElementById('focus').focus();
+
+            const keyboard = navigator.keyboard;
+            keyboard.getLayoutMap().then((keyboardLayoutMap) => {
+                const upKey = keyboardLayoutMap.get("KeyW");
+                window.alert(`Press ${upKey} to move up.`);
+            });
+
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'mayLayout',
+                key: e.code,
+                code: e.keyCode,
+                heldDown: e.repeat
+            }));
+        });
+
+        window.onkeydown = function (e) {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'down',
+                key: e.code,
+                code: e.keyCode,
+                heldDown: e.repeat
+            }));
+        }
+
+        window.onkeyup = function (e) {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'up',
+                key: e.code,
+                code: e.keyCode,
+                heldDown: e.repeat
+            }));
+        }
+
+        window.onkeypress = function (e) {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'press',
+                key: e.code,
+                code: e.keyCode,
+                heldDown: e.repeat
+            }));
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>
