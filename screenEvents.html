@@ -78,6 +78,14 @@ body,
       }));
     }
 
+    window.ontouchmove = function (e) {
+      ThunkableWebviewerExtension.postMessage(JSON.stringify({
+        type: 'touchMove',
+        x: e.clientX,
+        y: e.clientY
+      }));
+    }
+
     window.onresize = function (e) {
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'resize'
