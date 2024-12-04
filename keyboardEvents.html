@@ -57,21 +57,16 @@
 
     <script id="rendered-js">
 
-        const keyboard = navigator.keyboard;
-        keyboard.getLayoutMap().then((keyboardLayoutMap) => {
-            const upKey = keyboardLayoutMap.get("KeyW");
-            alert(upKey)
+        document.getElementById('focus').addEventListener('focus', function () {
+            const keyboard = navigator.keyboard;
+            keyboard.getLayoutMap().then((keyboardLayoutMap) => {
+                const upKey = keyboardLayoutMap.get("KeyW");
+                alert(upKey)
+            });
         });
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             document.getElementById('focus').focus();
-
-            ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                type: 'mayLayout',
-                key: e.code,
-                code: e.keyCode,
-                heldDown: e.repeat
-            }));
         });
 
         window.onkeydown = function (e) {
