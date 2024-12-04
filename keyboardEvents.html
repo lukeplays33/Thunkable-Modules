@@ -57,14 +57,6 @@
 
     <script id="rendered-js">
 
-        document.getElementById('focus').addEventListener('focus', function () {
-            const keyboard = navigator.keyboard;
-            keyboard.getLayoutMap().then((keyboardLayoutMap) => {
-                const upKey = keyboardLayoutMap.get("KeyW");
-                alert(upKey)
-            });
-        });
-
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             document.getElementById('focus').focus();
         });
