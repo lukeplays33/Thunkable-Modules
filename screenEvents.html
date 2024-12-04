@@ -83,8 +83,8 @@ body,
 
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'touchMove',
-        x: touch.pageX,
-        y: touch.pageY
+        x: touch.clientX,
+        y: touch.clientY
       }));
     }
 
