@@ -78,6 +78,22 @@ body,
       }));
     }
 
+    window.ondragover = function (e) { // disables default behaviour
+      e.preventDefault();
+    }
+
+    window.ondrop = function (e) {
+      e.preventDefault();
+
+      console.log(e.dataTransfer.files[0]);
+
+      ThunkableWebviewerExtension.postMessage(JSON.stringify({
+        type: 'drop',
+        x: e.clientX,
+        y: e.clientY
+      }));
+    }
+
     window.ontouchmove = function (e) {
       let touch = e.touches[0] || e.changedTouches[0];
 
