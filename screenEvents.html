@@ -79,7 +79,14 @@ body,
     }
 
     window.ontouchmove = function (e) {
-      let touch = e.touches[0] || e.changedTouches[0];
+          // Get the first touch point
+    var touch = event.touches[0];
+    
+    // Get the X and Y coordinates
+    var x = touch.clientX;
+    var y = touch.clientY;
+    
+    console.log('Touch coordinates: X = ' + x + ', Y = ' + y);
 
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'touchMove',
