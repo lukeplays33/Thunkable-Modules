@@ -66,6 +66,7 @@
             document.getElementById('focus').focus();
 
             message = JSON.parse(message);
+            console.log(message)
 
             if(message.type == 'init') {
                 console.log(JSON.parse(message.options).bgImage)
