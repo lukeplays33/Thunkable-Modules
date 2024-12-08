@@ -65,6 +65,8 @@
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             document.getElementById('focus').focus();
 
+            message = JSON.parse(message);
+
             if(message.type == 'init') {
                 document.body.style.backgorundImage = `url(${JSON.parse(message.options).bgImage})`;
                 pichai.initialize(JSON.parse(message.options));
