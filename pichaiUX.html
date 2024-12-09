@@ -62,7 +62,7 @@
             message = JSON.parse(message);
 
             if(message.type == 'init') {
-                document.body.style.backgorundImage = `url('${JSON.parse(message.options).bgImage})'`;
+                document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage})'`;
                 pichai.initialize(JSON.parse(message.options));
 
                 console.log(getComputedStyle(document.documentElement)
