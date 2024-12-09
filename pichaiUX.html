@@ -58,8 +58,6 @@
 
         let pichai = new PichaiUX();
 
-        //document.body.style.backgroundImage = 'none';
-
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             message = JSON.parse(message);
 
@@ -68,11 +66,11 @@
                 document.body.style.backgorundImage = `url('${JSON.parse(message.options).bgImage})'`;
                 pichai.initialize(JSON.parse(message.options));
 
-            } else if (message.type == 'dynamicImage') {
-                console.log('image')
-                let img = await pichai.generateDynamicIcon(message.image);
+                console.log(getComputedStyle(document.documentElement)
+                .getPropertyValue('--primary'))
 
-                console.log(img)
+            } else if (message.type == 'dynamicImage') {
+                let img = await pichai.generateDynamicIcon(message.image);
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dynamicImage',
