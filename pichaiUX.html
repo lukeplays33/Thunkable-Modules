@@ -63,6 +63,7 @@
 
             if (message.type == 'init') {
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
+                console.log(JSON.parse(message.options))
                 pichai.initialize(JSON.parse(message.options));
 
                 await pichai.varExists('--primary');
