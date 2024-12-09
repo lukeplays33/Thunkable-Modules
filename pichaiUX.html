@@ -70,6 +70,7 @@
                     type: 'loaded',
                 }));
 
+                console.log(getComputedStyle(document.documentElement).getPropertyValue('--primary'))
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'getVar',
                     primary: getComputedStyle(document.documentElement).getPropertyValue('--primary'),
