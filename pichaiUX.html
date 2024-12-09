@@ -56,12 +56,14 @@
     <script type="module" id="rendered-js">
         import { PichaiUX } from 'https://lukeplays33.github.io/Pichai-UX/imports.js';
 
+        let pichai;
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             message = JSON.parse(message);
 
             if (message.type == 'init') {
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
-                let pichai = new PichaiUX(JSON.parse(message.options));
+                pichai = new PichaiUX(JSON.parse(message.options));
                 pichai.initialize();
 
                 await pichai.varExists('--primary');
