@@ -65,9 +65,6 @@
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
                 pichai.initialize(JSON.parse(message.options));
 
-                console.log(getComputedStyle(document.documentElement)
-                .getPropertyValue('--primary'))
-
             } else if (message.type == 'dynamicImage') {
                 let img = await pichai.generateDynamicIcon(message.image);
 
