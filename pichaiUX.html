@@ -61,8 +61,6 @@
         //document.body.style.backgroundImage = 'none';
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
-            console.log(message)
-
             message = JSON.parse(message);
 
             if(message.type == 'init') {
