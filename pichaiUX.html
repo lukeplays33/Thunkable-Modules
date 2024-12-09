@@ -50,8 +50,6 @@
 </style>
 
 <body>
-    <input id="focus"></input>
-
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
@@ -63,10 +61,9 @@
         //document.body.style.backgroundImage = 'none';
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
-            document.getElementById('focus').focus();
+            console.log(message)
 
             message = JSON.parse(message);
-            console.log(message)
 
             if(message.type == 'init') {
                 console.log(JSON.parse(message.options).bgImage)
