@@ -66,6 +66,7 @@
                 pichai.initialize(JSON.parse(message.options));
 
                 await pichai.varExists('--primary');
+                console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'))
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'loaded',
                 }));
