@@ -65,11 +65,43 @@
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
                 pichai.initialize(JSON.parse(message.options));
 
-                console.log(getComputedStyle(document.documentElement))
-
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'getVar',
-                var: getComputedStyle(document.documentElement),
+                primary: getComputedStyle(document.documentElement).getPropertyValue('--primary'),
+                tertiary: getComputedStyle(document.documentElement).getPropertyValue('--tertiary'),
+                secondary: getComputedStyle(document.documentElement).getPropertyValue('--secondairy'),
+
+                primaryTextColor: getComputedStyle(document.documentElement).getPropertyValue('--primaryTextColor'),
+                tertiaryTextColor: getComputedStyle(document.documentElement).getPropertyValue('--tertiaryTextCOlor'),
+                secondaryTextColor: getComputedStyle(document.documentElement).getPropertyValue('--secondaryTextColor'),
+
+                primaryContainer: getComputedStyle(document.documentElement).getPropertyValue('--primaryContainer'),
+                tertiaryContainer: getComputedStyle(document.documentElement).getPropertyValue('--tertiaryContainer'),
+                secondaryContainer: getComputedStyle(document.documentElement).getPropertyValue('--secondairyContainer'),
+
+                primaryContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('primaryContainerTextColor'),
+                tertiaryContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('tertiaryContainerTextColor'),
+                secondaryContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('secondaryContainerTextColor'),
+
+                error: getComputedStyle(document.documentElement).getPropertyValue('--error'),
+                warning: getComputedStyle(document.documentElement).getPropertyValue('--warning'),
+                note: getComputedStyle(document.documentElement).getPropertyValue('--note'),
+                check: getComputedStyle(document.documentElement).getPropertyValue('--check'),
+
+                errorTextColor: getComputedStyle(document.documentElement).getPropertyValue('--errorTextColor'),
+                warningTextColor: getComputedStyle(document.documentElement).getPropertyValue('--warningTextColor'),
+                noteTextColor: getComputedStyle(document.documentElement).getPropertyValue('--noteTextColor'),
+                checkTextColor: getComputedStyle(document.documentElement).getPropertyValue('--checkTextColor'),
+
+                errorContainer: getComputedStyle(document.documentElement).getPropertyValue('--errorContainer'),
+                warningContainer: getComputedStyle(document.documentElement).getPropertyValue('--warningContainer'),
+                noteContainer: getComputedStyle(document.documentElement).getPropertyValue('--noteContainer'),
+                checkContainer: getComputedStyle(document.documentElement).getPropertyValue('--checkContainer'),
+
+                errorContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--errorContainerTextColor'),
+                warningContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--warningContainerTextColor'),
+                noteContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--noteContainerTextColor'),
+                checkContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--checkContainerTextColor'),
             }));
 
             } else if (message.type == 'dynamicImage') {
