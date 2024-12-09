@@ -73,13 +73,13 @@
             } else if (message.type == 'dynamicImage') {
                 let img = await pichai.generateDynamicIcon(message.image);
 
+                console.log(img)
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'dynamicImage',
                     image: img,
                 }));
 
             } else if (message.type == 'refreshVariables') {
-                console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'))
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'getVar',
                     primary: getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'),
