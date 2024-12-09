@@ -60,13 +60,21 @@
 
         //document.body.style.backgroundImage = 'none';
 
-        ThunkableWebviewerExtension.receiveMessage(function (message) {
+        ThunkableWebviewerExtension.receiveMessage(async function (message) {
             message = JSON.parse(message);
 
             if(message.type == 'init') {
                 console.log(JSON.parse(message.options).bgImage)
                 document.body.style.backgorundImage = `url('${JSON.parse(message.options).bgImage})'`;
                 pichai.initialize(JSON.parse(message.options));
+
+            } else if (message.type == 'dynamicImage') {
+                let img = await pichai.generateDynamicIcon(message.image);
+
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'dynamicImage',
+                image: img,
+            }));
             }
         });
     </script>
