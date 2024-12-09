@@ -60,6 +60,7 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             message = JSON.parse(message);
+            console.log(message.options)
 
             if (message.type == 'init') {
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
@@ -73,7 +74,6 @@
             } else if (message.type == 'dynamicImage') {
                 let img = await pichai.generateDynamicIcon(message.image);
 
-                console.log(img)
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'dynamicImage',
                     image: img,
