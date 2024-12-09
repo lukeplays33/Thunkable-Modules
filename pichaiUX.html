@@ -65,6 +65,13 @@
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
                 pichai.initialize(JSON.parse(message.options));
 
+                console.log(getComputedStyle(document.documentElement))
+
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'getVar',
+                var: getComputedStyle(document.documentElement),
+            }));
+
             } else if (message.type == 'dynamicImage') {
                 let img = await pichai.generateDynamicIcon(message.image);
 
@@ -72,6 +79,7 @@
                 type: 'dynamicImage',
                 image: img,
             }));
+
             }
         });
     </script>
