@@ -70,44 +70,44 @@
                     type: 'loaded',
                 }));
 
-                console.log(getComputedStyle(document.documentElement).getPropertyValue('--primary'))
+                console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'))
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'getVar',
-                    primary: getComputedStyle(document.documentElement).getPropertyValue('--primary'),
-                    tertiary: getComputedStyle(document.documentElement).getPropertyValue('--tertiary'),
-                    secondary: getComputedStyle(document.documentElement).getPropertyValue('--secondairy'),
+                    primary: getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'),
+                    tertiary: getComputedStyle(document.querySelector(':root')).getPropertyValue('--tertiary'),
+                    secondary: getComputedStyle(document.querySelector(':root')).getPropertyValue('--secondairy'),
 
-                    primaryTextColor: getComputedStyle(document.documentElement).getPropertyValue('--primaryTextColor'),
-                    tertiaryTextColor: getComputedStyle(document.documentElement).getPropertyValue('--tertiaryTextCOlor'),
-                    secondaryTextColor: getComputedStyle(document.documentElement).getPropertyValue('--secondaryTextColor'),
+                    primaryTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--primaryTextColor'),
+                    tertiaryTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--tertiaryTextCOlor'),
+                    secondaryTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--secondaryTextColor'),
 
-                    primaryContainer: getComputedStyle(document.documentElement).getPropertyValue('--primaryContainer'),
-                    tertiaryContainer: getComputedStyle(document.documentElement).getPropertyValue('--tertiaryContainer'),
-                    secondaryContainer: getComputedStyle(document.documentElement).getPropertyValue('--secondairyContainer'),
+                    primaryContainer: getComputedStyle(document.querySelector(':root')).getPropertyValue('--primaryContainer'),
+                    tertiaryContainer: getComputedStyle(document.querySelector(':root')).getPropertyValue('--tertiaryContainer'),
+                    secondaryContainer: getComputedStyle(document.querySelector(':root')).getPropertyValue('--secondairyContainer'),
 
-                    primaryContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('primaryContainerTextColor'),
-                    tertiaryContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('tertiaryContainerTextColor'),
-                    secondaryContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('secondaryContainerTextColor'),
+                    primaryContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('primaryContainerTextColor'),
+                    tertiaryContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('tertiaryContainerTextColor'),
+                    secondaryContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('secondaryContainerTextColor'),
 
-                    error: getComputedStyle(document.documentElement).getPropertyValue('--error'),
-                    warning: getComputedStyle(document.documentElement).getPropertyValue('--warning'),
-                    note: getComputedStyle(document.documentElement).getPropertyValue('--note'),
-                    check: getComputedStyle(document.documentElement).getPropertyValue('--check'),
+                    error: getComputedStyle(document.querySelector(':root')).getPropertyValue('--error'),
+                    warning: getComputedStyle(document.querySelector(':root')).getPropertyValue('--warning'),
+                    note: getComputedStyle(document.querySelector(':root')).getPropertyValue('--note'),
+                    check: getComputedStyle(document.querySelector(':root')).getPropertyValue('--check'),
 
-                    errorTextColor: getComputedStyle(document.documentElement).getPropertyValue('--errorTextColor'),
-                    warningTextColor: getComputedStyle(document.documentElement).getPropertyValue('--warningTextColor'),
-                    noteTextColor: getComputedStyle(document.documentElement).getPropertyValue('--noteTextColor'),
-                    checkTextColor: getComputedStyle(document.documentElement).getPropertyValue('--checkTextColor'),
+                    errorTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--errorTextColor'),
+                    warningTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--warningTextColor'),
+                    noteTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--noteTextColor'),
+                    checkTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--checkTextColor'),
 
-                    errorContainer: getComputedStyle(document.documentElement).getPropertyValue('--errorContainer'),
-                    warningContainer: getComputedStyle(document.documentElement).getPropertyValue('--warningContainer'),
-                    noteContainer: getComputedStyle(document.documentElement).getPropertyValue('--noteContainer'),
-                    checkContainer: getComputedStyle(document.documentElement).getPropertyValue('--checkContainer'),
+                    errorContainer: getComputedStyle(document.querySelector(':root')).getPropertyValue('--errorContainer'),
+                    warningContainer: getComputedStyle(document.querySelector(':root')).getPropertyValue('--warningContainer'),
+                    noteContainer: getComputedStyle(document.querySelector(':root')).getPropertyValue('--noteContainer'),
+                    checkContainer: getComputedStyle(document.querySelector(':root')).getPropertyValue('--checkContainer'),
 
-                    errorContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--errorContainerTextColor'),
-                    warningContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--warningContainerTextColor'),
-                    noteContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--noteContainerTextColor'),
-                    checkContainerTextColor: getComputedStyle(document.documentElement).getPropertyValue('--checkContainerTextColor'),
+                    errorContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--errorContainerTextColor'),
+                    warningContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--warningContainerTextColor'),
+                    noteContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--noteContainerTextColor'),
+                    checkContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--checkContainerTextColor'),
                 }));
 
             } else if (message.type == 'dynamicImage') {
