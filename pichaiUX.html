@@ -66,11 +66,19 @@
                 pichai.initialize(JSON.parse(message.options));
 
                 await pichai.varExists('--primary');
-                console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'))
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'loaded',
                 }));
 
+            } else if (message.type == 'dynamicImage') {
+                let img = await pichai.generateDynamicIcon(message.image);
+
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    type: 'dynamicImage',
+                    image: img,
+                }));
+
+            } else if (message.type == 'refreshVariables') {
                 console.log(getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'))
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'getVar',
@@ -110,15 +118,6 @@
                     noteContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--noteContainerTextColor'),
                     checkContainerTextColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--checkContainerTextColor'),
                 }));
-
-            } else if (message.type == 'dynamicImage') {
-                let img = await pichai.generateDynamicIcon(message.image);
-
-                ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                    type: 'dynamicImage',
-                    image: img,
-                }));
-
             }
         });
     </script>
