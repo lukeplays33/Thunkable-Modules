@@ -60,7 +60,6 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             message = JSON.parse(message);
-            console.log(message.options)
 
             if (message.type == 'init') {
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
