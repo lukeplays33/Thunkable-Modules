@@ -69,7 +69,10 @@
                 pichai.initialize(JSON.parse(message.options));
 
             } else if (message.type == 'dynamicImage') {
+                console.log('image')
                 let img = await pichai.generateDynamicIcon(message.image);
+
+                console.log(img)
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dynamicImage',
