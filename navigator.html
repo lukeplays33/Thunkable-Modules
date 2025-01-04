@@ -59,8 +59,15 @@
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
 
-            console.log(navigator.getBattery().charging)
-            
+            navigator.getBattery().then((battery) => {
+                batteryIsCharging = battery.charging;
+                console.log(batteryIsCharging);
+
+                battery.addEventListener("chargingchange", () => {
+                    batteryIsCharging = battery.charging;
+                });
+            });
+
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": navigator.appVersion,
