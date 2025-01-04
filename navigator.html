@@ -58,6 +58,7 @@
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
+            alert(message)
             
             if(message == 'language'){
                 ThunkableWebviewerExtension.postMessage(navigator.language);
