@@ -50,7 +50,6 @@
 </style>
 
 <body>
-    <input id="focus"></input>
 
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
@@ -58,13 +57,12 @@
     <script id="rendered-js">
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
-            document.getElementById('focus').focus();
-        });
-
-        window.onload = function () {
             let navigator = window.navigator;
-            alert(navigator.language)
-        }
+            
+            if(message == 'language'){
+                ThunkableWebviewerExtension.postMessage(navigator.language);
+            }
+        });
     </script>
 
 
