@@ -62,6 +62,7 @@
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": navigator.appVersion,
+                "cookiesEnabled": navigator.cookieEnabled,
             }));
         });
     </script>
