@@ -58,6 +58,8 @@
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
+
+            console.log(navigator.getBattery().charging)
             
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
