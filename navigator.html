@@ -54,22 +54,26 @@
         type="text/javascript"></script>
 
     <script id="rendered-js">
-
-        ThunkableWebviewerExtension.receiveMessage(function (message) {
-            let navigator = window.navigator;
-            let architecture;
-
-            if (navigator.userAgentData) {
+        async function getArchitecture() {
+            return new Promise((resolve) => {
+                if (navigator.userAgentData) {
                 navigator.userAgentData.getHighEntropyValues(['architecture'])
                     .then(data => {
-                        architecture = data.architecture;
+                        resolve(data.architecture);
                     })
                     .catch(err => {
-                        architecture = 'Could not get architecture:' + err
+                        resolve('Could not get architecture:' + err);
                     });
             } else {
-                architecture = 'navigator.userAgentData is not supported on this browser.';
+                resolve('navigator.userAgentData is not supported on this browser.');
             }
+            });
+
+        }
+
+        ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            let navigator = window.navigator;
+            let architecture = await getArchitecture();
 
             let brands = navigator.userAgentData.brands
 
