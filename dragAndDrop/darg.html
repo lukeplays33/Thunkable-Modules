@@ -81,22 +81,15 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
-            console.log(styles)
 
             img.src = styles.picture;
             img.style.objectFit = styles.resizeMode;
 
             img.setAttribute('draggable', styles.allowDragging);
-        });
 
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        window.ondrop = function (e) {
+            window.ondrop = function (e) {
             e.preventDefault();
 
-            console.log(styles)
             if (styles.allowDropping) {
 
                 img.src = window.localStorage.getItem('draggedThunkableItem');
@@ -105,6 +98,11 @@
                     type: 'dragEnded',
                 }));
             }
+        }
+        });
+
+        function allowDrop(ev) {
+            ev.preventDefault();
         }
     </script>
 
