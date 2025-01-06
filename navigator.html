@@ -58,11 +58,18 @@
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
 
-            console.log(navigator.userAgentData)
+            if (navigator.userAgentData) {
+  navigator.userAgentData.getHighEntropyValues(['architecture'])
+    .then(data => {
+      console.log(`Architecture: ${data.architecture}`);
+    })
+    .catch(err => {
+      console.error('Could not get architecture:', err);
+    });
+} else {
+  console.log('navigator.userAgentData is not supported on this browser.');
+}
             let brands = navigator.userAgentData.brands
-
-
-            console.log(brands[0].brand)
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
