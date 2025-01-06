@@ -59,7 +59,6 @@
                 if (navigator.userAgentData) {
                 navigator.userAgentData.getHighEntropyValues([Type])
                     .then(data => {
-                        alert(data[Type])
                         resolve(data[Type]);
                     })
                     .catch(err => {
