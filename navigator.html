@@ -57,25 +57,28 @@
 
     <script id="rendered-js">
 
-        let iframe = document.getElementById('my-iframe');
-        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        let iframeContent = iframeDocument.body.innerHTML;
-        console.log(iframeContent);
+        ThunkableWebviewerExtension.receiveMessage(function (message) {
+            let navigator = window.navigator;
 
-        ThunkableWebviewerExtension.postMessage(JSON.stringify({
-            "language": navigator.language,
-            "browserVersion": navigator.appVersion,
-            "cookiesEnabled": navigator.cookieEnabled,
-            "platform": navigator.platform,
-            "userAgent": navigator.userAgent,
-            "hardwareConcurrency": navigator.hardwareConcurrency,
-            "deviceMemory": navigator.deviceMemory,
-            "languages": navigator.languages,
-            "mobile": navigator.userAgentData.mobile,
-            "brands": JSON.stringify(navigator.userAgentData.brands),
-            "colorDepth": screen.colorDepth,
-            "pixelDepth": screen.pixelDepth,
-        }));
+            let iframe = document.getElementById('my-iframe');
+            let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            let iframeContent = iframeDocument.body.innerHTML;
+            console.log(iframeContent);
+
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                "language": navigator.language,
+                "browserVersion": navigator.appVersion,
+                "cookiesEnabled": navigator.cookieEnabled,
+                "platform": navigator.platform,
+                "userAgent": navigator.userAgent,
+                "hardwareConcurrency": navigator.hardwareConcurrency,
+                "deviceMemory": navigator.deviceMemory,
+                "languages": navigator.languages,
+                "mobile": navigator.userAgentData.mobile,
+                "brands": JSON.stringify(navigator.userAgentData.brands),
+                "colorDepth": screen.colorDepth,
+                "pixelDepth": screen.pixelDepth,
+            }));
 
         });
     </script>
