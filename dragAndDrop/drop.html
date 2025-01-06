@@ -67,11 +67,11 @@
         }
 
         window.ondrop = function (e) {
-            e.preventDefault();
+            e.preventDefault();4\
+
+            console.log(e)
             let file = e.dataTransfer.files[0];
             console.log(file)
-
-            try {
 
                 let reader = new FileReader()
                 reader.readAsDataURL(file)
@@ -79,9 +79,6 @@
 
                     document.body.style.backgroundImage = `url(${reader.result})`;
                 }
-            } catch (e) {
-                document.body.style.backgroundImage = `url(${file})`;
-            }
         }
     </script>
 
