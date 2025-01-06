@@ -127,16 +127,26 @@
     }
 
     window.onmousedown = function (e) {
-      console.log('down')
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'mousedown',
       }));
     }
 
     window.onmouseup = function (e) {
-      console.log('up')
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'mouseup',
+      }));
+    }
+
+    window.ontouchend = function (e) {
+      ThunkableWebviewerExtension.postMessage(JSON.stringify({
+        type: 'touchend',
+      }));
+    }
+
+    window.ontouchstart = function (e) {
+      ThunkableWebviewerExtension.postMessage(JSON.stringify({
+        type: 'touchstart',
       }));
     }
   </script>
