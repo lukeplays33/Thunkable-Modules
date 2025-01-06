@@ -70,6 +70,7 @@
         let img = document.getElementById('image');
 
         function drag(ev) {
+            ev.preventDefault();
             ev.dataTransfer.setData("text", ev.target.id);
 
             if(!styles.draggingImage == '') {
