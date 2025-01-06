@@ -63,16 +63,7 @@
         window.ondrop = function (e) {
             e.preventDefault();
 
-            console.log(e)
-            let file = e.dataTransfer.files[0];
-            console.log(file)
-
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onloadend = function () {
-            document.body.style.backgroundImage = `url(${reader.result})`;
-            }
+            document.body.style.backgroundImage = `url(${window.sessionStorage.getItem('draggedThunkableItem')})`;
         }
     </script>
 

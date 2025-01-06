@@ -69,6 +69,8 @@
 
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
+
+            window.sessionStorage.setItem('draggedThunkableItem', ev.target.src);
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
