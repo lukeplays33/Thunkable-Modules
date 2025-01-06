@@ -57,18 +57,20 @@
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
+            let architecture;
 
             if (navigator.userAgentData) {
-  navigator.userAgentData.getHighEntropyValues(['architecture'])
-    .then(data => {
-      console.log(`Architecture: ${data.architecture}`);
-    })
-    .catch(err => {
-      console.error('Could not get architecture:', err);
-    });
-} else {
-  console.log('navigator.userAgentData is not supported on this browser.');
-}
+                navigator.userAgentData.getHighEntropyValues(['architecture'])
+                    .then(data => {
+                        architecture = ${ data.architecture };
+                    })
+                    .catch(err => {
+                        architecture = 'Could not get architecture:' + err
+                    });
+            } else {
+                architecture = 'navigator.userAgentData is not supported on this browser.';
+            }
+
             let brands = navigator.userAgentData.brands
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
@@ -85,6 +87,7 @@
                 "brands": JSON.stringify(brands),
                 "colorDepth": screen.colorDepth,
                 "pixelDepth": screen.pixelDepth,
+                "deviceArchitecture": architecture
             }));
 
         });
