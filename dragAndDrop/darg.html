@@ -70,17 +70,7 @@
         let img = document.getElementById('image');
 
         function drag(ev) {
-            ev.preventDefault();
             ev.dataTransfer.setData("text", ev.target.id);
-
-            if(!styles.draggingImage == '') {
-                let img = document.createElement('img');
-                img.src = styles.draggingImage;
-
-                console.log(img)
-
-                ev.dataTransfer.setDragImage(img, 10, 10);
-            }
 
             window.localStorage.setItem('draggedThunkableItem', ev.target.src);
 
