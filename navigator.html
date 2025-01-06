@@ -58,6 +58,10 @@
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
 
+            let brands = navigator.userAgentData.brands
+
+            console.log(Object.keys(brands[1]))
+
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": navigator.appVersion,
@@ -68,7 +72,7 @@
                 "deviceMemory": navigator.deviceMemory,
                 "languages": navigator.languages,
                 "mobile": navigator.userAgentData.mobile,
-                "brands": JSON.stringify(navigator.userAgentData.brands),
+                "brands": JSON.stringify(brands),
                 "colorDepth": screen.colorDepth,
                 "pixelDepth": screen.pixelDepth,
             }));
