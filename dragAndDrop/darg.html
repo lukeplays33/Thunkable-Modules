@@ -81,7 +81,6 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
-            console.log(styles)
 
             img.src = styles.picture;
             img.style.objectFit = styles.resizeMode;
@@ -96,7 +95,6 @@
         window.ondrop = function (e) {
             e.preventDefault();
 
-            console.log(styles)
             if (styles.allowDropping) {
 
                 img.src = window.localStorage.getItem('draggedThunkableItem');
