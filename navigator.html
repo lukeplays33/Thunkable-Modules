@@ -50,19 +50,10 @@
 </style>
 
 <body>
-    <iframe id="getInfo" src="https://www.whatismybrowser.com/feature/iframe"></iframe>
-
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
     <script id="rendered-js">
-
-        let iframe = document.getElementById('getInfo');
-        iframe.onload = function () {
-            let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-        let iframeContent = iframeDocument.body.innerHTML;
-        console.log(iframeContent);
-        }
 
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
