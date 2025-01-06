@@ -50,38 +50,32 @@
 </style>
 
 <body>
+    <iframe id="getInfo" src="https://www.whatismybrowser.com/feature/iframe"></iframe>
 
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
     <script id="rendered-js">
 
-        ThunkableWebviewerExtension.receiveMessage(function (message) {
-            let navigator = window.navigator;
+        let iframe = document.getElementById('my-iframe');
+        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        let iframeContent = iframeDocument.body.innerHTML;
+        console.log(iframeContent);
 
-            navigator.getBattery().then((battery) => {
-                batteryIsCharging = battery.charging;
-                console.log(batteryIsCharging);
-
-                battery.addEventListener("chargingchange", () => {
-                    batteryIsCharging = battery.charging;
-                });
-            });
-
-            ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                "language": navigator.language,
-                "browserVersion": navigator.appVersion,
-                "cookiesEnabled": navigator.cookieEnabled,
-                "platform": navigator.platform,
-                "userAgent": navigator.userAgent,
-                "hardwareConcurrency": navigator.hardwareConcurrency,
-                "deviceMemory": navigator.deviceMemory,
-                "languages": navigator.languages,
-                "mobile": navigator.userAgentData.mobile,
-                "brands": JSON.stringify(navigator.userAgentData.brands),
-                "colorDepth": screen.colorDepth,
-                "pixelDepth": screen.pixelDepth,
-            }));
+        ThunkableWebviewerExtension.postMessage(JSON.stringify({
+            "language": navigator.language,
+            "browserVersion": navigator.appVersion,
+            "cookiesEnabled": navigator.cookieEnabled,
+            "platform": navigator.platform,
+            "userAgent": navigator.userAgent,
+            "hardwareConcurrency": navigator.hardwareConcurrency,
+            "deviceMemory": navigator.deviceMemory,
+            "languages": navigator.languages,
+            "mobile": navigator.userAgentData.mobile,
+            "brands": JSON.stringify(navigator.userAgentData.brands),
+            "colorDepth": screen.colorDepth,
+            "pixelDepth": screen.pixelDepth,
+        }));
 
         });
     </script>
