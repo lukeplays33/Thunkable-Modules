@@ -71,14 +71,14 @@
             ev.dataTransfer.setData("text", ev.target.id);
 
             window.localStorage.setItem('draggedThunkableItem', ev.target.src);
-        }
-
-        ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            img.src = message;
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragStarted',
             }));
+        }
+
+        ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            img.src = message;
 
         });
 
