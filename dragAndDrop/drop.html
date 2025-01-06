@@ -27,8 +27,8 @@
         height: 100%;
 
         background-color: TRANSPARENT;
-        background-size:cover;
-        background-position:center;
+        background-size: cover;
+        background-position: center;
     }
 
     #focus {
@@ -68,14 +68,18 @@
 
         window.ondrop = function (e) {
             e.preventDefault();
-
             let file = e.dataTransfer.files[0];
 
-            let reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onloadend = function () {
+            try {
 
-            document.body.style.backgroundImage = `url(${reader.result})`;
+                let reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onloadend = function () {
+
+                    document.body.style.backgroundImage = `url(${reader.result})`;
+                } catch (e) {
+                    document.body.style.backgroundImage = `url(${file})`;
+                }
             }
 
 
