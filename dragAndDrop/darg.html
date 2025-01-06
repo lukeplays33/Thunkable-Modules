@@ -65,10 +65,19 @@
         type="text/javascript"></script>
 
     <script id="rendered-js">
+        let styles;
+
         let img = document.getElementById('image');
 
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
+
+            if(!styles.draggingImage == '') {
+                let img = document.createElement('img');
+                img.src = styles.draggingImage;
+                
+                ev.dataTransfer.setDragImage(img, 10, 10);
+            }
 
             window.localStorage.setItem('draggedThunkableItem', ev.target.src);
 
@@ -78,7 +87,9 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            img.src = message;
+            styles = JSON.parse(message);
+            img.src = styles.picture;
+            img.style.objectFit = styles.resizeMode;
 
         });
 
