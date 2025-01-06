@@ -105,6 +105,18 @@
         function allowDrop(ev) {
             ev.preventDefault();
         }
+
+        window.ondragover = function () {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'dragover',
+            }));
+        }
+
+        window.ondragleave = function () {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'dragleave',
+            }));
+        }
     </script>
 
 
