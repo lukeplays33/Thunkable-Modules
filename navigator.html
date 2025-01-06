@@ -92,8 +92,8 @@
                 "brands": JSON.stringify(brands),
                 "colorDepth": screen.colorDepth,
                 "pixelDepth": screen.pixelDepth,
-                "deviceArchitecture": await getArchitecture('architecture'),
-                "osVersion": await getArchitecture('platformVersion'),
+                "deviceArchitecture": await getOsInfo('architecture'),
+                "osVersion": await getOsInfo('platformVersion'),
             }));
 
         });
