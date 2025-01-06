@@ -78,12 +78,10 @@
                 reader.onloadend = function () {
 
                     document.body.style.backgroundImage = `url(${reader.result})`;
-                } catch (e) {
-                    document.body.style.backgroundImage = `url(${file})`;
                 }
+            } catch (e) {
+                document.body.style.backgroundImage = `url(${file})`;
             }
-
-
         }
     </script>
 
