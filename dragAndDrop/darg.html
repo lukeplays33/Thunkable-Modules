@@ -58,7 +58,7 @@
     }
 </style>
 
-<body>
+<body ondragover="allowDrop(event)">
     <img id="image" alt="DraggableImage" draggable="true" ondragstart="drag(event)"></img>
 
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
@@ -77,6 +77,16 @@
             img.src = message;
 
         });
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        window.ondrop = function (e) {
+            e.preventDefault();
+
+            document.body.style.backgroundImage = `url(${window.sessionStorage.getItem('draggedThunkableItem')})`;
+        }
     </script>
 
 
