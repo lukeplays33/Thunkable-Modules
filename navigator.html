@@ -60,7 +60,7 @@
         ThunkableWebviewerExtension.receiveMessage(function (message) {
             let navigator = window.navigator;
 
-            let iframe = document.getElementById('my-iframe');
+            let iframe = document.getElementById('getInfo');
             let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
             let iframeContent = iframeDocument.body.innerHTML;
             console.log(iframeContent);
