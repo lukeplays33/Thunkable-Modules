@@ -70,7 +70,7 @@
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
 
-            window.sessionStorage.setItem('draggedThunkableItem', ev.target.src);
+            window.localStorage.setItem('draggedThunkableItem', ev.target.src);
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
@@ -89,7 +89,7 @@
         window.ondrop = function (e) {
             e.preventDefault();
 
-            img.src = window.sessionStorage.getItem('draggedThunkableItem');
+            img.src = window.localStorage.getItem('draggedThunkableItem');
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragEnded',
