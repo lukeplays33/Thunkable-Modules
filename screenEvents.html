@@ -127,13 +127,13 @@
     }
 
     window.onmousedown = function (e) {
+      console.log(e)
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'mousedown',
       }));
     }
 
     window.onmouseup = function (e) {
-      console.log(e)
       ThunkableWebviewerExtension.postMessage(JSON.stringify({
         type: 'mouseup',
       }));
