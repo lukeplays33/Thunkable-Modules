@@ -108,11 +108,22 @@
         window.ondrop = function (e) {
             e.preventDefault();
 
-            img.src = window.localStorage.getItem('draggedThunkableItem');
+            try {
+                let file = e.dataTransfer.files[0];
 
-            ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                type: 'dragEnded',
-            }));
+                let reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onloadend = function () {
+                    img.src = reader.esult;
+                }
+            } catch (e) {
+
+                img.src = window.localStorage.getItem('draggedThunkableItem');
+
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    type: 'dragEnded',
+                }));
+            }
         }
     </script>
 
