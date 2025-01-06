@@ -90,6 +90,7 @@
             window.ondrop = function (e) {
             e.preventDefault();
 
+            console.log(style)
             if (styles.allowDropping) {
 
                 img.src = window.localStorage.getItem('draggedThunkableItem');
