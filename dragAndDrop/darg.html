@@ -99,6 +99,7 @@
         }
 
         window.ondragleave = function () {
+            console.log('leave');
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragleave',
             }));
