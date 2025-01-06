@@ -73,9 +73,10 @@
             ev.dataTransfer.setData("text", ev.target.id);
 
             if(!styles.draggingImage == '') {
-                console.log(styles.draggingImage)
                 let img = document.createElement('img');
                 img.src = styles.draggingImage;
+
+                console.log(img)
 
                 ev.dataTransfer.setDragImage(img, 10, 10);
             }
