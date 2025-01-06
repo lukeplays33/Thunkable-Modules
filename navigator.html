@@ -59,6 +59,7 @@
                 if (navigator.userAgentData) {
                 navigator.userAgentData.getHighEntropyValues(['architecture'])
                     .then(data => {
+                        alert(data.architecture)
                         resolve(data.architecture);
                     })
                     .catch(err => {
