@@ -76,6 +76,10 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             img.src = message;
 
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'dragStarted',
+            }));
+
         });
 
         function allowDrop(ev) {
@@ -86,6 +90,10 @@
             e.preventDefault();
 
             img.src = window.sessionStorage.getItem('draggedThunkableItem');
+
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'dragEnded',
+            }));
         }
     </script>
 
