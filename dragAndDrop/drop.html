@@ -67,18 +67,18 @@
         }
 
         window.ondrop = function (e) {
-            e.preventDefault();4\
+            e.preventDefault();
 
             console.log(e)
             let file = e.dataTransfer.files[0];
             console.log(file)
 
-                let reader = new FileReader()
-                reader.readAsDataURL(file)
-                reader.onloadend = function () {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
 
-                    document.body.style.backgroundImage = `url(${reader.result})`;
-                }
+            reader.onloadend = function () {
+            document.body.style.backgroundImage = `url(${reader.result})`;
+            }
         }
     </script>
 
