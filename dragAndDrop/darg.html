@@ -92,13 +92,13 @@
             ev.preventDefault();
         }
 
-        window.ondragover = function () {
+        img.ondragover = function () {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragover',
             }));
         }
 
-        window.ondragleave = function () {
+        img.ondragleave = function () {
             console.log('leave');
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragleave',
