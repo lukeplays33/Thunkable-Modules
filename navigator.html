@@ -65,7 +65,8 @@
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
-                "browserVersion": navigator.appVersion,
+                "browserVersion": brands[0].version,
+                "browserName": brands[0].brand,
                 "cookiesEnabled": navigator.cookieEnabled,
                 "platform": navigator.platform,
                 "userAgent": navigator.userAgent,
