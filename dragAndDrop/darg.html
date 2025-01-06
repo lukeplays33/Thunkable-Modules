@@ -92,7 +92,7 @@
             ev.preventDefault();
         }
 
-        img.ondragover = function () {
+        img.ondragenter = function () {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragover',
             }));
