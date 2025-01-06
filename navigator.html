@@ -60,7 +60,8 @@
 
             let brands = navigator.userAgentData.brands
 
-            console.log(brands[1])
+
+            console.log(brands[0].brand)
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
