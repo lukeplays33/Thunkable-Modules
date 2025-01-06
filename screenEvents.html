@@ -125,6 +125,24 @@
         angle: e.target.screen.orientation.angle
       }));
     }
+
+    window.onmousedown = function (e) {
+      let touch = e.touches[0] || e.changedTouches[0];
+
+      ThunkableWebviewerExtension.postMessage(JSON.stringify({
+        type: 'mousedown',
+      }));
+    }
+
+    window.onmouseup = function (e) {
+      let touch = e.touches[0] || e.changedTouches[0];
+
+      ThunkableWebviewerExtension.postMessage(JSON.stringify({
+        type: 'mouseup',
+        x: touch.clientX,
+        y: touch.clientY
+      }));
+    }
   </script>
 
 
