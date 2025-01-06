@@ -86,11 +86,15 @@
             img.style.objectFit = styles.resizeMode;
 
             img.setAttribute('draggable', styles.allowDragging);
+        });
 
-            window.ondrop = function (e) {
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        window.ondrop = function (e) {
             e.preventDefault();
 
-            console.log(style)
             if (styles.allowDropping) {
 
                 img.src = window.localStorage.getItem('draggedThunkableItem');
@@ -99,11 +103,6 @@
                     type: 'dragEnded',
                 }));
             }
-        }
-        });
-
-        function allowDrop(ev) {
-            ev.preventDefault();
         }
     </script>
 
