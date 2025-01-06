@@ -62,7 +62,7 @@
             if (navigator.userAgentData) {
                 navigator.userAgentData.getHighEntropyValues(['architecture'])
                     .then(data => {
-                        architecture = ${ data.architecture };
+                        architecture = data.architecture;
                     })
                     .catch(err => {
                         architecture = 'Could not get architecture:' + err
