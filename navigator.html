@@ -56,14 +56,14 @@
         type="text/javascript"></script>
 
     <script id="rendered-js">
-
-        ThunkableWebviewerExtension.receiveMessage(function (message) {
-            let navigator = window.navigator;
-
-            let iframe = document.getElementById('getInfo');
+        
+        let iframe = document.getElementById('getInfo');
             let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
             let iframeContent = iframeDocument.body.innerHTML;
             console.log(iframeContent);
+
+        ThunkableWebviewerExtension.receiveMessage(function (message) {
+            let navigator = window.navigator;
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
