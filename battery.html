@@ -74,6 +74,7 @@
             });
 
             battery.addEventListener('chargingchange', function (e) {
+                init();
                 ThunkableWebviewerExtension.postMessage('stateChanged');
             }, false);
 
@@ -86,6 +87,7 @@
             }, false);
 
             battery.addEventListener('levelchange', function (e) {
+                init();
                 ThunkableWebviewerExtension.postMessage('levelchanged');
             }, false);
         }
