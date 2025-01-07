@@ -70,6 +70,7 @@
             }
 
             battery.onchargingchange = function (e) {
+                console.log(e)
                 ThunkableWebviewerExtension.postMessage('stateChanged');
             };
 
