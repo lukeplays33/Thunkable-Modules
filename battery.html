@@ -57,9 +57,10 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
+            let battery = await navigator.getBattery();
 
             if(message == 'batteryLevel') {
-                let battery = await navigator.getBattery();
+                console.log(battery.level)
                 ThunkableWebviewerExtension.postMessage(battery.level);
             }
 
