@@ -54,10 +54,10 @@
         type="text/javascript"></script>
 
     <script id="rendered-js">
+        let battery = await navigator.getBattery();
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
-            let battery = await navigator.getBattery();
 
             if(message == 'batteryLevel') {
                 ThunkableWebviewerExtension.postMessage(battery.level);
