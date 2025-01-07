@@ -59,7 +59,7 @@
             let navigator = window.navigator;
             let battery = await navigator.getBattery();
 
-            if (message == 'batteryLevel') {
+            if(message == 'batteryLevel') {
                 ThunkableWebviewerExtension.postMessage(battery.level);
             } else if (message == 'batteryCharging') {
                 ThunkableWebviewerExtension.postMessage(battery.charging);
@@ -69,14 +69,24 @@
                 ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
             }
 
-            navigator.getBattery().then((battery) => {
-                battery.onchargingchange = () => {
-                    console.log('aaaa')
-                    ThunkableWebviewerExtension.postMessage('stateChanged');
-                };
-            });
-
         });
+
+        battery.addEventListener('chargingchange', function (e) {
+                alert()
+                ThunkableWebviewerExtension.postMessage('stateChanged');
+            }, false);
+
+            battery.addEventListener('chargingtimechange', function (e) {
+                ThunkableWebviewerExtension.postMessage('timeChanged');
+            }, false);
+
+            battery.addEventListener('dischargingtimechange', function (e) {
+                ThunkableWebviewerExtension.postMessage('dischargingTimeChanged');
+            }, false);
+
+            battery.addEventListener('levelchange', function (e) {
+                ThunkableWebviewerExtension.postMessage('levelchanged');
+            }, false);
     </script>
 
 
