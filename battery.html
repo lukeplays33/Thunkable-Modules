@@ -64,6 +64,7 @@
             } else if (message == 'batteryCharging') {
                 ThunkableWebviewerExtension.postMessage(battery.charging);
             } else if (message == 'batteryChargingTime') {
+                console.log(battery.chargingTime)
                 ThunkableWebviewerExtension.postMessage(battery.chargingTime);
             } else if (message == 'batteryDischargingTime') {
                 ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
