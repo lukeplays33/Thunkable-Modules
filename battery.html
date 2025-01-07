@@ -69,10 +69,9 @@
                 ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
             }
 
-            battery.addEventListener('chargingchange', function (e) {
-                alert()
+            battery.onchargingchange = function (e) {
                 ThunkableWebviewerExtension.postMessage('stateChanged');
-            }, false);
+            };
 
             battery.addEventListener('chargingtimechange', function (e) {
                 ThunkableWebviewerExtension.postMessage('timeChanged');
