@@ -54,24 +54,26 @@
         type="text/javascript"></script>
 
     <script id="rendered-js">
-        let navigator = window.navigator;
-        let battery = await navigator.getBattery();
 
-        ThunkableWebviewerExtension.receiveMessage(async function (message) {
+        async function init() {
+            let navigator = window.navigator;
+            let battery = await navigator.getBattery();
 
-            if(message == 'batteryLevel') {
-                ThunkableWebviewerExtension.postMessage(battery.level);
-            } else if (message == 'batteryCharging') {
-                ThunkableWebviewerExtension.postMessage(battery.charging);
-            } else if (message == 'batteryChargingTime') {
-                ThunkableWebviewerExtension.postMessage(battery.chargingTime);
-            } else if (message == 'batteryDischargingTime') {
-                ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
-            }
+            ThunkableWebviewerExtension.receiveMessage(async function (message) {
 
-        });
+                if (message == 'batteryLevel') {
+                    ThunkableWebviewerExtension.postMessage(battery.level);
+                } else if (message == 'batteryCharging') {
+                    ThunkableWebviewerExtension.postMessage(battery.charging);
+                } else if (message == 'batteryChargingTime') {
+                    ThunkableWebviewerExtension.postMessage(battery.chargingTime);
+                } else if (message == 'batteryDischargingTime') {
+                    ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
+                }
 
-        battery.addEventListener('chargingchange', function (e) {
+            });
+
+            battery.addEventListener('chargingchange', function (e) {
                 alert()
                 ThunkableWebviewerExtension.postMessage('stateChanged');
             }, false);
@@ -87,6 +89,9 @@
             battery.addEventListener('levelchange', function (e) {
                 ThunkableWebviewerExtension.postMessage('levelchanged');
             }, false);
+        }
+
+        init();
     </script>
 
 
