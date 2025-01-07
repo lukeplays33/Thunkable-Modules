@@ -60,8 +60,13 @@
             let battery = await navigator.getBattery();
 
             if(message == 'batteryLevel') {
-                console.log(battery.level)
                 ThunkableWebviewerExtension.postMessage(battery.level);
+            } else if (message == 'batteryCharging') {
+                ThunkableWebviewerExtension.postMessage(battery.charging);
+            } else if (message == 'batteryChargingTime') {
+                ThunkableWebviewerExtension.postMessage(battery.chargingTime);
+            } else if (message == 'batteryDischargingTime') {
+                ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
             }
 
         });
