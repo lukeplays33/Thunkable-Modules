@@ -125,7 +125,8 @@
         img.addEventListener('long-press', function (e) {
 
             // stop the event from bubbling up
-            e.preventDefault()
+            e.preventDefault();
+            console.log('aa')
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'longClick',
