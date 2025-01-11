@@ -110,6 +110,13 @@
             }));
         }
 
+        omg.onclick = function () {
+            console.log('leave');
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'clicked',
+            }));
+        }
+
         window.ondrop = function (e) {
             e.preventDefault();
 
