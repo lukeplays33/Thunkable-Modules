@@ -128,9 +128,21 @@
             }));
         }
 
-        img.ontouchdown = function () { // GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL!
+        img.ontouchstart = function () { // GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL!
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'touchDown',
+            }));
+        }
+
+        img.onmouseup = function () {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'touchUp',
+            }));
+        }
+
+        img.ontouchend = function () { // GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL!
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'touchUp',
             }));
         }
 
