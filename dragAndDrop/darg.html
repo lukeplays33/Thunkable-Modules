@@ -104,14 +104,12 @@
         }
 
         img.ondragleave = function () {
-            console.log('leave');
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragleave',
             }));
         }
 
         img.onclick = function () {
-            console.log('leave');
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'clicked',
             }));
