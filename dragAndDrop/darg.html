@@ -59,7 +59,8 @@
 </style>
 
 <body ondragover="allowDrop(event)">
-    <img id="image" alt="DraggableImage" draggable="true" ondragstart="drag(event)" src="../assets/1200px-HD_transparent_picture.png"></img>
+    <img id="image" alt="DraggableImage" draggable="true" ondragstart="drag(event)"
+        src="../assets/1200px-HD_transparent_picture.png"></img>
 
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
@@ -84,8 +85,10 @@
 
             img.src = styles.picture;
             img.style.objectFit = styles.resizeMode;
-            console.log(styles.style)
-            img.style = styles.style;
+
+            for (const property in styles.style) {
+                element.style[property] = styles[property];
+            }
 
             img.setAttribute('draggable', styles.allowDragging);
         });
