@@ -87,7 +87,7 @@
             img.style.objectFit = styles.resizeMode;
 
             for (const property in styles.style) {
-                element.style[property] = styles[property];
+                img.style[property] = styles[property];
             }
 
             img.setAttribute('draggable', styles.allowDragging);
