@@ -84,7 +84,6 @@
             styles = JSON.parse(message);
 
             img.src = styles.picture;
-            console.log(img.src);
 
             for (const property in styles.style) {
                 img.style[property] = styles.style[property];
@@ -112,6 +111,12 @@
         img.onclick = function () {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'clicked',
+            }));
+        }
+
+        img.ondbclick = function () {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'doubleClicked',
             }));
         }
 
