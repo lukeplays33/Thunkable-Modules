@@ -122,11 +122,22 @@
             }));
         }
 
+        img.onmousedown = function () {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'touchDown',
+            }));
+        }
+
+        img.ontouchdown = function () { // GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL!
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'touchDown',
+            }));
+        }
+
         img.addEventListener('long-press', function (e) {
 
             // stop the event from bubbling up
             e.preventDefault();
-            console.log('aa')
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'longClick',
