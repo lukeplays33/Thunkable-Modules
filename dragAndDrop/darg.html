@@ -83,7 +83,8 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
-
+            console.log(styles);
+            
             img.setAttribute('alt', styles.text);
             img.src = styles.picture;
 
