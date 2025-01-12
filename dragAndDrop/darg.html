@@ -75,6 +75,8 @@
             ev.dataTransfer.setData("text", ev.target.id);
 
             window.localStorage.setItem('draggedThunkableItem', ev.target.src);
+            window.localStorage.setItem('draggedThunkableItemStyle', ev.target.style.cssText);
+            window.localStorage.setItem('draggedThunkableItemAlt', ev.target.getAttribute('alt'));
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragStarted',
@@ -84,7 +86,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
             console.log(styles);
-            
+
             img.setAttribute('alt', styles.text);
             img.src = styles.picture;
 
@@ -129,7 +131,7 @@
             }));
         }
 
-        img.ontouchstart = function () { // GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL!
+        img.ontouchstart = function () {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'touchDown',
             }));
@@ -141,7 +143,7 @@
             }));
         }
 
-        img.ontouchend = function () { // GOALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL!
+        img.ontouchend = function () {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'touchUp',
             }));
@@ -171,6 +173,8 @@
             } catch (e) {
 
                 img.src = window.localStorage.getItem('draggedThunkableItem');
+                img.style.cssText = window.localStorage.getItem('draggedThunkableItemStyle');
+                img.setAttribute('alt', window.localStorage.getItem('draggedThunkableItemAlt'));
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'dragEnded',
