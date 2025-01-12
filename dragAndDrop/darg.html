@@ -91,7 +91,7 @@
             styles = JSON.parse(message);
             console.log(styles);
 
-            img.setAttribute('alt', styles.text);
+            img.setAttribute('alt', '&nbsp;' + styles.text);
             img.src = styles.picture;
 
             for (const property in styles.style) {
