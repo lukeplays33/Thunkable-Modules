@@ -57,7 +57,7 @@
         background-color: TRANSPARENT;
     }
 
-    img:empty  {
+    img:empty {
         margin-left: -22px;
     }
 </style>
@@ -78,7 +78,6 @@
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
 
-            window.localStorage.setItem('draggedThunkableItem', ev.target.src);
             window.localStorage.setItem('draggedThunkableItemStyle', ev.target.style.cssText);
             window.localStorage.setItem('draggedThunkableItemAlt', ev.target.getAttribute('alt'));
 
@@ -89,13 +88,20 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
-            console.log(styles);
 
             img.setAttribute('alt', '. ' + styles.text); // spaces are ignored so use . space to mimic it together with some margins.
-            img.src = styles.picture;
 
             for (const property in styles.style) {
-                img.style[property] = styles.style[property];
+                if (styles.style[property] == 'repeat') {
+                    img.style.backgroundRepeat = 'repeat';
+                } else if (styles.style[property] == 'center') {
+                    img.style.backgroundSize = 'contain';
+                    img.style.backgroundPosition = 'center';
+                } else if (styles.style[property] == 'stretch') {
+                    img.style.backgroundSize = 'length';
+                } else {
+                    img.style[property] = styles.style[property];
+                }
             }
 
             img.setAttribute('draggable', styles.allowDragging);
@@ -176,7 +182,6 @@
                 }
             } catch (e) {
 
-                img.src = window.localStorage.getItem('draggedThunkableItem');
                 img.style.cssText = window.localStorage.getItem('draggedThunkableItemStyle');
                 img.setAttribute('alt', window.localStorage.getItem('draggedThunkableItemAlt'));
 
