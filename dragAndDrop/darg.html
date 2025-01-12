@@ -91,7 +91,7 @@
             styles = JSON.parse(message);
             console.log(styles);
 
-            img.setAttribute('alt', '. ' + styles.text);
+            img.setAttribute('alt', '. ' + styles.text); // spaces are ignored so use . space to mimic it together with some margins.
             img.src = styles.picture;
 
             for (const property in styles.style) {
