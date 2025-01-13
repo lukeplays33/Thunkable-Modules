@@ -99,11 +99,12 @@
                     img.style.backgroundPosition = 'center';
                 } else if (styles.style[property] == 'stretch') {
                     img.style.backgroundSize = '100% 100%';
-                } else if (property == 'fontSize') {
-                    img.style.fontSize = styles.style.fontSize;
-                    img.style.marginLeft = `calc(-${parseInt(styles.style.fontSize)}px * 4)`;
-                    img.style.width = `calc(100% + ${parseInt(styles.style.fontSize) * 8}px)`;
-                } else {
+                } //else if (property == 'fontSize') {
+                   // img.style.fontSize = styles.style.fontSize;
+                   // img.style.marginLeft = `calc(-${parseInt(styles.style.fontSize)}px * 4)`;
+                   // img.style.width = `calc(100% + ${parseInt(styles.style.fontSize) * 8}px)`;
+                //} 
+                else {
                     img.style[property] = styles.style[property];
                 }
             }
