@@ -102,6 +102,7 @@
                 } else if (property == 'fontSize') {
                     img.style.fontSize = styles.style.fontSize;
                     img.style.marginLeft = `calc(-${parseInt(styles.style.fontSize)}px * 4)`;
+                    img.style.width = `calc(100% + ${parseInt(styles.style.fontSize) * 4}px)`;
                 } else {
                     img.style[property] = styles.style[property];
                 }
