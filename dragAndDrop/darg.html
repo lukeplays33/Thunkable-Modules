@@ -49,10 +49,9 @@
     }
 
     img {
-        width: Calc(100% + 22px);
+        width: 100%;
         height: 100%;
 
-        margin-left: -22px;
 
         object-fit: contain;
 
@@ -92,7 +91,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
 
-            img.setAttribute('alt', '. ' + styles.text); // spaces are ignored so use . space to mimic it together with some margins.
+            img.setAttribute('alt', styles.text);
 
             for (const property in styles.style) {
                 if (styles.style[property] == 'repeat') {
