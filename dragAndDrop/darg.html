@@ -62,7 +62,7 @@
             ev.dataTransfer.setData("text", ev.target.id);
 
             window.localStorage.setItem('draggedThunkableItemStyle', ev.target.style.cssText);
-            window.localStorage.setItem('draggedThunkableItemAlt', ev.target.getAttribute('alt'));
+            window.localStorage.setItem('draggedThunkableItemAlt', ev.target.innerHTML);
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'dragStarted',
@@ -72,7 +72,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
 
-            img.setAttribute('alt', styles.text);
+            img.innerHTML = styles.text
 
             for (const property in styles.style) {
                 if (styles.style[property] == 'repeat') {
@@ -166,8 +166,8 @@
             } catch (e) {
 
                 img.style.cssText = window.localStorage.getItem('draggedThunkableItemStyle');
-                img.setAttribute('alt', window.localStorage.getItem('draggedThunkableItemAlt'));
-
+                img.innerHTML = window.localStorage.getItem('draggedThunkableItemAlt');
+-
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'dragEnded',
                 }));
