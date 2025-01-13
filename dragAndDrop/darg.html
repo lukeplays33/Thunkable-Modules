@@ -75,6 +75,7 @@
             img.innerHTML = styles.text
 
             for (const property in styles.style) {
+                console.log(property, styles.style[property]);
                 if (styles.style[property] == 'repeat') {
                     img.style.backgroundRepeat = 'repeat';
                 } else if (styles.style[property] == 'center') {
