@@ -71,6 +71,7 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             styles = JSON.parse(message);
+            console.log(styles)
 
             img.innerHTML = styles.text
 
