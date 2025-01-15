@@ -60,6 +60,7 @@
                 let type = 'sessionStorage';
 
                 if (message.type == 'get') {
+                    console.log(indow[type].getItem('docItem'))
                     ThunkableWebviewerExtension.postMessage(window[type].getItem('docItem'));
                 }
 
