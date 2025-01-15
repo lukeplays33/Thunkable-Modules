@@ -74,18 +74,22 @@
             });
 
             battery.addEventListener('chargingchange', function (e) {
+                ThunkableWebviewerExtension.postMessage(battery.charging);
                 ThunkableWebviewerExtension.postMessage('stateChanged');
             }, false);
 
             battery.addEventListener('chargingtimechange', function (e) {
+                ThunkableWebviewerExtension.postMessage(battery.chargingTime);
                 ThunkableWebviewerExtension.postMessage('timeChanged');
             }, false);
 
             battery.addEventListener('dischargingtimechange', function (e) {
+                ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
                 ThunkableWebviewerExtension.postMessage('dischargingTimeChanged');
             }, false);
 
             battery.addEventListener('levelchange', function (e) {
+                ThunkableWebviewerExtension.postMessage(battery.level);
                 ThunkableWebviewerExtension.postMessage('levelchanged');
             }, false);
         }
