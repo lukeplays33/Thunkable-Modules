@@ -58,10 +58,9 @@
                 let msg = JSON.parse(message);
 
                 let type = 'sessionStorage';
-                alert(msg.type)
 
                 if (msg.type == 'get') {
-                    console.log(indow[type].getItem('docItem'))
+                    console.log(window[type].getItem('docItem'))
                     ThunkableWebviewerExtension.postMessage(window[type].getItem('docItem'));
                 }
 
