@@ -86,6 +86,7 @@
                 } else if (property.includes('padding')) {
                     img.style.width = `calc(100% - (${styles.style.paddingLeft} - ${styles.style.paddingRight})`;
                     img.style.height = `calc(100% - (${styles.style.paddingTop} - ${styles.style.paddingBottom})`;
+                    img.style[property] = styles.style[property];
                 } else {
                     img.style[property] = styles.style[property];
                 }
