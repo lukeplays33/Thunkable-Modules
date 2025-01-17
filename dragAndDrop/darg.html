@@ -83,7 +83,7 @@
                     img.style.backgroundPosition = 'center';
                 } else if (styles.style[property] == 'stretch') {
                     img.style.backgroundSize = '100% 100%';
-                } else if (styles.style[property].includes('padding')) {
+                } else if (property.includes('padding')) {
                     img.style.width = `calc(100% - (${styles.style.paddingLeft} - ${styles.style.paddingRight})`;
                     img.style.height = `calc(100% - (${styles.style.paddingTop} - ${styles.style.paddingBottom})`;
                 } else {
