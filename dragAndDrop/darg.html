@@ -57,6 +57,8 @@
     <script id="rendered-js">
         let styles;
 
+        let minWidth, minHeight, maxWidth, maxHeight;
+
         let img = document.getElementById('image');
 
         function drag(ev) {
@@ -98,9 +100,10 @@
                 } else if (styles.style[property] == 'stretch') {
                     img.style.backgroundSize = '100% 100%';
                 } else if (property.includes('padding')) {
-                    img.style.width = `calc(100% - (${styles.style.paddingLeft} + ${styles.style.paddingRight})`;
+                    maxWidth = `calc(100% - (${styles.style.paddingLeft} + ${styles.style.paddingRight})`;
+                    img.style.width = maxWidth;
                     img.style.height = `calc(100% - (${styles.style.paddingTop} + ${styles.style.paddingBottom})`;
-                    img.style.maxWidth = `calc(100% - (${styles.style.paddingLeft} + ${styles.style.paddingRight})`;
+                    img.style.maxWidth = maxWidth;
                     img.style.maxHeight = `calc(100% - (${styles.style.paddingTop} + ${styles.style.paddingBottom})`;
 
                     img.style[property] = styles.style[property];
@@ -202,23 +205,15 @@
             }));
         }
 
-        let comp = window.getComputedStyle(img);
-        console.log(comp)
-        let minWidth = parseInt(comp.getPropertyValue('min-width'));
-        let minHeight = parseInt(comp.getPropertyValue('min-height'));
-        let maxWidth = parseInt(comp.getPropertyValue('max-width'));
-        let maxHeight = parseInt(comp.getPropertyValue('max-height'));
-        console.log(comp.maxWidth, comp.maxHeight)
-        console.log(maxWidth, maxHeight)
-
+        console.log(`calc(100% - (${styles.style.paddingLeft} + ${styles.style.paddingRight})`;)
         interact('.resizable-box')
             .resizable({
                 edges: { left: true, right: true, bottom: true, top: true },
                 inertia: true, // Enable smooth stopping after resizing
                 modifiers: [
                     interact.modifiers.restrictSize({
-                        min: { width: minWidth, height: minHeight },
-                        max: { width: maxWidth, height: maxHeight },
+                        min: { width: 0, height: 0 },
+                        max: { width: 1000, height: 1000 },
                     }),
                 ],
             })
