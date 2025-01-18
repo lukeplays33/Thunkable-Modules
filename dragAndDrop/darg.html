@@ -181,6 +181,12 @@
             } catch (e) {
             }
 
+            console.log({
+                type: 'draggingData',
+                style: img.style.cssText,
+                alt: img.innerHTML,
+            });
+            
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'draggingData',
                 style: img.style.cssText,
