@@ -57,7 +57,7 @@
     <script id="rendered-js">
         let styles;
 
-        let minWidth, minHeight, maxWidth, maxHeight;
+        let maxWidth, maxHeight;
 
         let img = document.getElementById('image');
 
@@ -101,10 +101,11 @@
                     img.style.backgroundSize = '100% 100%';
                 } else if (property.includes('padding')) {
                     maxWidth = `calc(100% - (${styles.style.paddingLeft} + ${styles.style.paddingRight})`;
+                    maxHeight = `calc(100% - (${styles.style.paddingTop} + ${styles.style.paddingBottom})`;
                     img.style.width = maxWidth;
-                    img.style.height = `calc(100% - (${styles.style.paddingTop} + ${styles.style.paddingBottom})`;
+                    img.style.height = maxHeight;
                     img.style.maxWidth = maxWidth;
-                    img.style.maxHeight = `calc(100% - (${styles.style.paddingTop} + ${styles.style.paddingBottom})`;
+                    img.style.maxHeight = maxHeight;
 
                     img.style[property] = styles.style[property];
                 } else {
@@ -205,7 +206,6 @@
             }));
         }
 
-        console.log(maxWidth, maxHeight);
         interact('.resizable-box')
             .resizable({
                 edges: { left: true, right: true, bottom: true, top: true },
@@ -213,7 +213,7 @@
                 modifiers: [
                     interact.modifiers.restrictSize({
                         min: { width: 0, height: 0 },
-                        max: { width: 1000, height: 1000 },
+                        max: { width: window.innerWidth, height: window.innerHeight },
                     }),
                 ],
             })
