@@ -43,6 +43,8 @@
         background-color: TRANSPARENT;
 
         background-repeat: no-repeat;
+
+        touch-action: none; /* Prevent touch gestures from interfering */
     }
 </style>
 
@@ -210,7 +212,7 @@
         interact('.resizable-box')
             .resizable({
                 edges: { left: true, right: true, bottom: true, top: true },
-                inertia: false, // Enable smooth stopping after resizing
+                inertia: true, // Enable smooth stopping after resizing
                 modifiers: [
                     interact.modifiers.restrictSize({
                         min: { width: 0, height: 0 },
