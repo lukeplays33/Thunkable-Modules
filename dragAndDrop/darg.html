@@ -202,15 +202,20 @@
             }));
         }
 
-        console.log(styles)
+        let comp = window.getComputedStyle(img);
+        let minWidth = pasrseInt(comp.getPropertyValue('min-width'));
+        let minHeight = pasrseInt(comp.getPropertyValue('min-height'));
+        let maxWidth = pasrseInt(comp.getPropertyValue('max-width'));
+        let maxHeight = pasrseInt(comp.getPropertyValue('max-height'));
+
         interact('.resizable-box')
             .resizable({
                 edges: { left: true, right: true, bottom: true, top: true },
                 inertia: true, // Enable smooth stopping after resizing
                 modifiers: [
                     interact.modifiers.restrictSize({
-                        min: { width: 100, height: 50 },
-                        max: { width: 500, height: 300 },
+                        min: { width: minWIdth, height: minHeight },
+                        max: { width: maxWidth, height: maxHeight },
                     }),
                 ],
             })
