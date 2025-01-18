@@ -175,8 +175,8 @@
                 reader.onloadend = function () {
                     img.style.backgroundImage = `url(${reader.result})`;
 
-                    window.localStorage.setItem('draggedThunkableItemStyle', e.target.style.cssText);
-                    window.localStorage.setItem('draggedThunkableItemAlt', e.target.innerHTML);
+                    window.localStorage.setItem('draggedThunkableItemStyle', img.style.cssText);
+                    window.localStorage.setItem('draggedThunkableItemAlt', img.innerHTML);
                 }
             } catch (e) {
             }
