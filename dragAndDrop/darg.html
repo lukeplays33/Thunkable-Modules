@@ -203,10 +203,10 @@
         }
 
         let comp = window.getComputedStyle(img);
-        let minWidth = pasrseInt(comp.getPropertyValue('min-width'));
-        let minHeight = pasrseInt(comp.getPropertyValue('min-height'));
-        let maxWidth = pasrseInt(comp.getPropertyValue('max-width'));
-        let maxHeight = pasrseInt(comp.getPropertyValue('max-height'));
+        let minWidth = parseInt(comp.getPropertyValue('min-width'));
+        let minHeight = parseInt(comp.getPropertyValue('min-height'));
+        let maxWidth = parseInt(comp.getPropertyValue('max-width'));
+        let maxHeight = parseInt(comp.getPropertyValue('max-height'));
 
         interact('.resizable-box')
             .resizable({
