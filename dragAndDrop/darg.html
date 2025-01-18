@@ -203,6 +203,7 @@
         }
 
         let comp = window.getComputedStyle(img);
+        console.log(comp)
         let minWidth = parseInt(comp.getPropertyValue('min-width'));
         let minHeight = parseInt(comp.getPropertyValue('min-height'));
         let maxWidth = parseInt(comp.getPropertyValue('max-width'));
