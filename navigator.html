@@ -74,7 +74,9 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
 
-            let brands = navigator.userAgentData.brands
+            let brands = navigator.userAgentData.brands;
+
+            alert(navigator.maxTouchPoints)
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
