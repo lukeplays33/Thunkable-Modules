@@ -59,8 +59,7 @@
 
     ThunkableWebviewerExtension.receiveMessage(function (message) {
 
-      if(message == 'orientation') {
-        console.log(message)
+      if(message == 'orientationProps') {
         ThunkableWebviewerExtension.postMessage(JSON.stringify({
           type: 'orientation',
           orientationType: window.screen.orientation.type,
