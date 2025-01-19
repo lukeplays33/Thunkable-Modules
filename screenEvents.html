@@ -58,6 +58,15 @@
   <script id="rendered-js">
 
     ThunkableWebviewerExtension.receiveMessage(function (message) {
+
+      if(message == 'orientation') {
+        ThunkableWebviewerExtension.postMessage(JSON.stringify({
+          type: 'orientation',
+          orientationType: window.screen.orientation.type,
+          angle: window.screen.orientation.angle
+        }));
+      }
+      
       document.getElementById('focus').focus();
     });
 
