@@ -76,8 +76,6 @@
 
             let brands = navigator.userAgentData.brands;
 
-            alert(navigator.maxTouchPoints)
-
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": brands[0].version,
@@ -96,6 +94,7 @@
                 "osVersion": await getOsInfo('platformVersion'),
                 "deviceBits": await getOsInfo('bitness'),
                 "model": await getOsInfo('model'),
+                "touchPoints": navigator.maxTouchPoints,
             }));
 
         });
