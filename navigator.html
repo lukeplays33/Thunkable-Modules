@@ -84,7 +84,7 @@
                 "browserVersion": brands[2].version,
                 "browserName": brands[2].brand,
                 "cookiesEnabled": navigator.cookieEnabled,
-                "platform": navigator.platform,
+                "platform": String(navigator.platform).substring(0, String(navigator.platform).indexOf(' ') - 1),
                 "userAgent": navigator.userAgent,
                 "hardwareConcurrency": navigator.hardwareConcurrency,
                 "deviceMemory": navigator.deviceMemory,
