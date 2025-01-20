@@ -59,10 +59,10 @@
                 if (navigator.userAgentData) {
                 navigator.userAgentData.getHighEntropyValues([Type])
                     .then(data => {
+                        console.log(typeof data[Type]);
                         resolve(data[Type]);
                     })
                     .catch(err => {
-                        alert(err)
                         resolve('Could not get architecture:' + err);
                     });
             } else {
