@@ -62,6 +62,7 @@
                         resolve(data[Type]);
                     })
                     .catch(err => {
+                        alert(err)
                         resolve('Could not get architecture:' + err);
                     });
             } else {
