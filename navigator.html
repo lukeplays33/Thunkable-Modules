@@ -68,6 +68,8 @@
                 os = 'iOS';
             } else if (windowsPlatforms.indexOf(platform) !== -1) {
                 os = 'Windows';
+            }else if (/CrOS/.test(userAgent)) {
+                os = 'ChromeOS';
             } else if (/Android/.test(userAgent)) {
                 os = 'Android';
             } else if (!os && /Linux/.test(platform)) {
@@ -122,7 +124,7 @@
                 "model": await getOsInfo('model'),
                 "touchPoints": navigator.maxTouchPoints,
                 "actualOS": getOS(),
-                "isTablet": /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(navigator.userAgent)
+                "isTablet": (navigator.userAgent.match(/Tablet|iPad|iPod/i) && window.innerWidth <= 1280 && window.innerHeight <= 800)
             }));
 
         });
