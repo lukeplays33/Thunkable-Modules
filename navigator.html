@@ -117,7 +117,7 @@
 
             let brands = navigator.userAgentData.brands;
 
-            alert(String(navigator.platform))
+            alert(String(navigator.platform).substring(0, 20))
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": brands[2].version,
