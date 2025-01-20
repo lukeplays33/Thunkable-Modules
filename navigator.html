@@ -98,6 +98,7 @@
                 "deviceBits": await getOsInfo('bitness'),
                 "model": await getOsInfo('model'),
                 "touchPoints": navigator.maxTouchPoints,
+                "isTablet": /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(navigator.userAgent)
             }));
 
         });
