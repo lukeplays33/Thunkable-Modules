@@ -78,6 +78,7 @@
             let navigator = window.navigator;
 
             let brands = navigator.userAgentData.brands;
+            alert(String(navigator.platform).substring(0, String(navigator.platform).indexOf(' ') - 1))
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
