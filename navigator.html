@@ -124,7 +124,7 @@
                 "model": await getOsInfo('model'),
                 "touchPoints": navigator.maxTouchPoints,
                 "actualOS": getOS(),
-                "isTablet": (navigator.userAgent.match(/Tablet|iPad|iPod/i) && window.innerWidth <= 1280 && window.innerHeight <= 800)
+                "isTablet": (navigator.userAgent.match(/Tablet|iPad|iPod/i) && window.innerWidth <= 1280 && window.innerHeight >= 800)
             }));
 
         });
