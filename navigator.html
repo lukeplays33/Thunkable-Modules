@@ -59,7 +59,9 @@
                 if (navigator.userAgentData) {
                 navigator.userAgentData.getHighEntropyValues([Type])
                     .then(data => {
-                        console.log(typeof data[Type]);
+                        if(data[Type] == '' && Type == 'architecture'){
+                            data[Type] = window.navigator.platform.includes('aarch64') ? 'arm64' : '';
+                        }
                         resolve(data[Type]);
                     })
                     .catch(err => {
