@@ -116,14 +116,12 @@
             let navigator = window.navigator;
 
             let brands = navigator.userAgentData.brands;
-
-            alert(String(navigator.platform).indexOf(' '))
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": brands[2].version,
                 "browserName": brands[2].brand,
                 "cookiesEnabled": navigator.cookieEnabled,
-                "platform": String(navigator.platform).substring(0, String(navigator.platform).indexOf(' ')),
+                "platform": String(navigator.platform).substring(0, String(navigator.platform + '').indexOf(' ')),
                 "userAgent": navigator.userAgent,
                 "hardwareConcurrency": navigator.hardwareConcurrency,
                 "deviceMemory": navigator.deviceMemory,
