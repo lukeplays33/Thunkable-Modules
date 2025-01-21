@@ -115,7 +115,6 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
 
-            alert(new Intl.DisplayNames(['en'], {type: 'region'}).of(navigator.language.split('-')[1]))
             let brands = navigator.userAgentData.brands;
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
