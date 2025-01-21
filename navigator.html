@@ -136,7 +136,8 @@
                 "model": await getOsInfo('model'),
                 "touchPoints": navigator.maxTouchPoints,
                 "actualOS": getOS(),
-                "isTablet": isTablet()
+                "isTablet": isTablet(),
+                "countryCode": navigator.language.split('-')[0],
             }));
 
         });
