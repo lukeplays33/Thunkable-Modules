@@ -115,7 +115,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
 
-            let clock = new Date(Date.UTC(2012, 11, 12, 3, 0, 0)).toLocaleTimeString();
+            let clock = new Date().toLocaleTimeString();
 
             let brands = navigator.userAgentData.brands;
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
