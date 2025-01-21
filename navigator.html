@@ -139,6 +139,7 @@
                 "isTablet": isTablet(),
                 "countryCode": navigator.language.split('-')[1],
                 "countryName": new Intl.DisplayNames(['en'], {type: 'region'}).of(navigator.language.split('-')[1]),
+                "12hour": Intl.DateTimeFormat(navigator.language,  { hour: 'numeric' }).resolvedOptions().hour12
             }));
 
         });
