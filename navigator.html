@@ -112,6 +112,15 @@
 
         }
 
+        function is24HourClock() {
+            const timeString = new Date().toLocaleTimeString(undefined, { hour: '2-digit', hourCycle: 'h23' });
+
+            // Check if the string contains "AM" or "PM"
+            const is12Hour = /AM|PM/i.test(timeString);
+
+            return !is12Hour;
+        }
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
 
@@ -140,8 +149,8 @@
                 "actualOS": getOS(),
                 "isTablet": isTablet(),
                 "countryCode": navigator.language.split('-')[1],
-                "countryName": new Intl.DisplayNames(['en'], {type: 'region'}).of(navigator.language.split('-')[1]),
-                "12hour": clock.match(/am|pm/i) || clock.toString().match(/am|pm/i)
+                "countryName": new Intl.DisplayNames(['en'], { type: 'region' }).of(navigator.language.split('-')[1]),
+                "12hour": !is24HourClock(),
 
             }));
 
