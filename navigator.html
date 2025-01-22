@@ -121,6 +121,12 @@
             return !is12Hour;
         }
 
+        function usesMetricSystem() {
+            let codes = ['US', 'LR', 'MM'];
+
+            return !codes.includes(navigator.language.split('-')[1]);
+        }
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
 
@@ -151,6 +157,7 @@
                 "countryCode": navigator.language.split('-')[1],
                 "countryName": new Intl.DisplayNames(['en'], { type: 'region' }).of(navigator.language.split('-')[1]),
                 "12hour": !is24HourClock(),
+                "usesMetricSystem?": usesMetricSystem(),
 
             }));
 
