@@ -128,7 +128,7 @@
         }
 
         function getTemperatureUnit() {
-            const locale = navigator.language || navigator.userLanguage;
+            let locale = navigator.language || navigator.userLanguage;
             locale = locale.split('-')[1];
             const fahrenheitLocales = ["US", "BS", "KY", "LR", "PW"]; // Add more locales as needed
 
