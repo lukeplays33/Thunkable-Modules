@@ -127,6 +127,17 @@
             return !codes.includes(navigator.language.split('-')[1]);
         }
 
+        function getTemperatureUnit() {
+            const locale = navigator.language || navigator.userLanguage;
+            locale = locale.split('-')[1];
+            const fahrenheitLocales = ["US", "BS", "KY", "LR", "PW"]; // Add more locales as needed
+
+            return fahrenheitLocales.includes(locale) ? "Fahrenheit" : "Celsius";
+        }
+
+        console.log(getTemperatureUnit()); // Outputs "Celsius" or "Fahrenheit"
+
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
 
@@ -156,7 +167,7 @@
                 "countryName": new Intl.DisplayNames(['en'], { type: 'region' }).of(navigator.language.split('-')[1]),
                 "12hour": !is24HourClock(),
                 "usesMetricSystem?": usesMetricSystem(),
-
+                "temperatureUnit": getTemperatureUnit()
             }));
 
         });
