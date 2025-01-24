@@ -180,7 +180,8 @@
                 "12hour": !is24HourClock(),
                 "usesMetricSystem?": usesMetricSystem(),
                 "temperatureUnit": getTemperatureUnit(),
-                "dateFormat": getDateFormat()
+                "dateFormat": getDateFormat(),
+                "timeZone": Intl.DateTimeFormat().resolvedOptions().timeZone,
             }));
 
         });
