@@ -56,9 +56,9 @@
 
     <script id="rendered-js" type="module">
         import('https://cdn.jsdelivr.net/npm/@thumbmarkjs/thumbmarkjs/dist/thumbmark.umd.js')
-.then(() => {
-    ThumbmarkJS.getFingerprint().then((fp) => { console.log(fp)})
-})
+            .then(() => {
+                ThumbmarkJS.getFingerprint().then((fp) => { console.log(fp) })
+            })
 
         function getOS() {
             var userAgent = window.navigator.userAgent,
