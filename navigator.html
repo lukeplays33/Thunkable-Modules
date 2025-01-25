@@ -50,17 +50,10 @@
 </style>
 
 <body>
-    <script src="https://lukeplays33.github.io/Thunkable-Modules/libraries/ThumbmarkJS.js" type="text/javascript"></script>
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
-        alert()
-        ThumbmarkJS.getFingerprint().then(
-            function (fp) {
-                console.log(fp);
-            }
-        );
         function getOS() {
             var userAgent = window.navigator.userAgent,
                 platform = window.navigator.platform,
