@@ -152,8 +152,13 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
-
             let brands = navigator.userAgentData.brands;
+
+            import('../libraries/ThumbmarkJS.js')
+                .then(() => {
+                    ThumbmarkJS.getFingerprint().then((fp) => { console.log(fp) })
+                })
+
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": brands[2].version,
