@@ -154,7 +154,7 @@
             let navigator = window.navigator;
             let brands = navigator.userAgentData.brands;
 
-            import('../libraries/ThumbmarkJS.js')
+            import('./libraries/ThumbmarkJS.js')
                 .then(() => {
                     ThumbmarkJS.getFingerprint().then((fp) => { console.log(fp) })
                 })
