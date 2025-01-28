@@ -56,6 +56,7 @@
     <script id="rendered-js" type="module">
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            window.getScreenDetails();
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "colorDepth": screen.colorDepth,
                 "pixelDepth": screen.pixelDepth,
