@@ -61,6 +61,7 @@
                 "pixelDepth": screen.pixelDepth,
                 "resolution": screen.width + "x" + screen.height,
                 "monochrome":  window.matchMedia("(monochrome)").matches,
+                colorGamut: window.matchMedia("(color-gamut: srgb)").matches ? "srgb" : window.matchMedia("(color-gamut: p3)").matches ? "p3" : window.matchMedia("(color-gamut: rec2020)").matches ? "rec2020" : "unknown",
             }));
 
         });
