@@ -83,7 +83,7 @@
             }
         });
 
-        document.querySelector("button").click()
+        
 
         async function getInfo() {
             const screenDetails = await window.getScreenDetails();
@@ -92,7 +92,7 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            getInfo()
+            document.querySelector("button").click()
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "colorDepth": screen.colorDepth,
