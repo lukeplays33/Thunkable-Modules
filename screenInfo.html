@@ -76,14 +76,12 @@
             return state;
         }
 
-        document.querySelector("button").addEventListener("click", async () => {
+        document.querySelector("#requestPermissionButton").addEventListener("click", async () => {
             const state = await getWindowManagementPermissionState();
             if (state == 'prompt') {
                 alert(state)
             }
         });
-
-        
 
         async function getInfo() {
             const screenDetails = await window.getScreenDetails();
@@ -92,7 +90,7 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            document.querySelector("button").click()
+            document.querySelector("#requestPermissionButton").click()
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "colorDepth": screen.colorDepth,
