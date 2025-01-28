@@ -55,7 +55,14 @@
 
     <script id="rendered-js" type="module">
 
+async function getInfo () {
+  const screenDetails = await window.getScreenDetails();
+const noOfScreens = screenDetails.screens.length;
+alert(noOfScreens)
+}
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            getInfo()
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "colorDepth": screen.colorDepth,
