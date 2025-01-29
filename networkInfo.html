@@ -72,11 +72,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             if ("connection" in navigator) {
                 connection = navigator.connection;
-
-                console.log("Effective Type:", connection.effectiveType); // 4g, 3g, etc.
-                console.log("Downlink Speed:", connection.downlink, "Mbps"); // Estimated bandwidth
-                console.log("RTT:", connection.rtt, "ms"); // Round Trip Time
-                console.log("Save Data Mode:", connection.saveData); // true/false
+                console.log("type: ", connection.type); // true/false
             }
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
