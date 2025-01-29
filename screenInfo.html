@@ -58,6 +58,7 @@
         async function gatherData() {
             const screenDetails = await window.getScreenDetails();
 
+            console.log(screenDetails.currentScreen)
             window.sessionStorage.setItem('currentScreen', JSON.stringify(screenDetails.currentScreen));
         }
 
