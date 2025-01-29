@@ -93,6 +93,7 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            MeasureConnectionSpeed()
             if ("connection" in navigator) {
                 connection = navigator.connection;
                 //console.log(await MeasureConnectionSpeed())
