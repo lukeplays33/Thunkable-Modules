@@ -63,7 +63,7 @@
         pc.onicecandidate = function (ice) {
             if (ice && ice.candidate && ice.candidate.candidate) {
                 console.log(ice)
-                mDNS = ice.candidate.adress;
+                mDNS = ice.candidate.address;
                 console.log('Your IP Address:', mDNS);
                 pc.onicecandidate = noop;
             }
