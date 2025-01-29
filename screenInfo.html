@@ -59,7 +59,7 @@
             const screenDetails = await window.getScreenDetails();
 
             console.log(screenDetails.currentScreen)
-            window.sessionStorage.setItem('currentScreen', JSON.stringify(screenDetails.currentScreen));
+            window.sessionStorage.setItem('currentScreenLabel', screenDetails.currentScreen.label);
         }
 
         async function getWindowManagementPermissionState() {
@@ -91,7 +91,9 @@
         let page;
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            page = window.open(window.location.href)
+            page = window.open(window.location.href);
+
+            alert(window.sessionStorage.getItem('currentScreenLabel'))
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "colorDepth": screen.colorDepth,
                 "pixelDepth": screen.pixelDepth,
@@ -100,7 +102,7 @@
                 "pixelRatio": window.devicePixelRatio,
                 "touchScreen": window.matchMedia("(pointer: coarse)").matches,
                 "retinaDisplay": window.devicePixelRatio >= 2,
-                "currentScreen": window.sessionStorage.getItem('currentScreen'),
+                "currentScreen": window.sessionStorage.getItem('currentScreenLabel'),
                 colorGamut: window.matchMedia("(color-gamut: srgb)").matches ? "srgb" : window.matchMedia("(color-gamut: p3)").matches ? "p3" : window.matchMedia("(color-gamut: rec2020)").matches ? "rec2020" : "unknown",
             }));
 
