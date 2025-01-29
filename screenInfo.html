@@ -73,7 +73,7 @@
                 // The Window Management API is supported.
                 const state = await getWindowManagementPermissionState();
                 if (state == 'prompt') {
-                    alert(state)
+                    const screenDetails = await window.getScreenDetails();
                 }
             } else {
                 alert('unsupported')
