@@ -73,7 +73,6 @@
             if ("connection" in navigator) {
                 connection = navigator.connection;
                 alert("type: ", connection.type); // true/false
-            }
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
@@ -83,6 +82,7 @@
                 "downlinkSpeed": connection.downlink,
                 "RTT": connection.rtt,
             }));
+        }
 
         });
     </script>
