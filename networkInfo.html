@@ -54,7 +54,7 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
-        let mDNS;
+        let dandidate;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
         var pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
@@ -63,8 +63,7 @@
         pc.onicecandidate = function (ice) {
             if (ice && ice.candidate && ice.candidate.candidate) {
                 console.log(ice)
-                mDNS = ice.candidate.address;
-                console.log('Your IP Address:', mDNS);
+                dandidate = ice.candidate;
                 pc.onicecandidate = noop;
             }
         };
@@ -81,7 +80,8 @@
             }
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                "mDNS": mDNS,
+                "mDNS": dandidate.address,
+                "port": dandidate.port,
             }));
 
         });
