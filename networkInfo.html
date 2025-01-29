@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+
+
+
+    <title>CodePen - A Pen by lukeplays33</title>
+
+    <link rel="canonical" href="https://codepen.io/lukeplays33/pen/JjQOmMb">
+
+
+
+
+
+
+
+
+</head>
+<style>
+    body,
+    html {
+        margin: 0px;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: TRANSPARENT;
+    }
+
+    #focus {
+        height: 0px;
+        width: 0px;
+        border-width: 0px;
+        border-color: TRANSPARENT;
+
+        background-color: TRANSPARENT;
+        outline: none;
+    }
+
+    #focus:focus {
+        border-width: 0px;
+        border-color: TRANSPARENT;
+
+        background-color: TRANSPARENT;
+
+        outline: none;
+    }
+</style>
+
+<body>
+    <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
+        type="text/javascript"></script>
+
+    <script id="rendered-js" type="module">
+        ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            if ("connection" in navigator) {
+                const connection = navigator.connection;
+
+                console.log("Effective Type:", connection.effectiveType); // 4g, 3g, etc.
+                console.log("Downlink Speed:", connection.downlink, "Mbps"); // Estimated bandwidth
+                console.log("RTT:", connection.rtt, "ms"); // Round Trip Time
+                console.log("Save Data Mode:", connection.saveData); // true/false
+            }
+
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                "savData": connection.saveData,
+             }));
+
+        });
+    </script>
+
+
+
+
+
+</body>
+
+</html>
