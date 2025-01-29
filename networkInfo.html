@@ -82,6 +82,7 @@
                     let bitsLoaded = downloadSize * 8;
                     let speedMbps = (speedKbps / 1024).toFixed(2);
 
+                    console.log("Your connection speed is: " + speedMbps + " Mbps");
                     resolve(speedMbps);
                 }
 
@@ -94,7 +95,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             if ("connection" in navigator) {
                 connection = navigator.connection;
-                console.log(await MeasureConnectionSpeed())
+                //console.log(await MeasureConnectionSpeed())
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     "mDNS": dandidate.address,
@@ -104,7 +105,7 @@
                     "downlinkSpeed": connection.downlink,
                     "RTT": connection.rtt,
                     "type": connection.type,
-                    "speed": await MeasureConnectionSpeed()
+                    //"speed": await MeasureConnectionSpeed()
                 }));
             }
 
