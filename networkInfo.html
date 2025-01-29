@@ -104,7 +104,7 @@
                     "downlinkSpeed": connection.downlink,
                     "RTT": connection.rtt,
                     "type": connection.type,
-                    "speed": MeasureConnectionSpeed()
+                    "speed": await MeasureConnectionSpeed()
                 }));
             }
 
