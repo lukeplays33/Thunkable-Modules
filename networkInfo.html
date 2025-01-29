@@ -94,7 +94,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             if ("connection" in navigator) {
                 connection = navigator.connection;
-                console.log(MeasureConnectionSpeed())
+                console.log(await MeasureConnectionSpeed())
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     "mDNS": dandidate.address,
