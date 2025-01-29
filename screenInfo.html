@@ -71,15 +71,17 @@
         document.querySelector("button").addEventListener("click", async () => {
             if ('getScreenDetails' in window) {
                 // The Window Management API is supported.
-                const state = await getWindowManagementPermissionState();
-                if (state == 'prompt') {
-                    const screenDetails = await window.getScreenDetails();
 
-                    window.sessionStorage.setItem('currentScreen', JSON.stringify(screenDetails.currentScreen));
-                }
+                const screenDetails = await window.getScreenDetails();
+
+                window.sessionStorage.setItem('currentScreen', JSON.stringify(screenDetails.currentScreen));
             } else {
                 alert('unsupported')
             }
+        });
+
+        getWindowManagementPermissionState().then((state) => {
+            console.log(state);
         });
 
         let page;
