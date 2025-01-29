@@ -50,18 +50,26 @@
 </style>
 
 <body>
+    <button id="requestPermissionButton">Request Window Management Permission</button>
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
+        if ('getScreenDetails' in window) {
+            // The Window Management API is supported.
+        } else {
+            alert('unsupported')
+        }
+
+        let window;
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            window.open(window.location.href)
+            window = window.open(window.location.href)
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "colorDepth": screen.colorDepth,
                 "pixelDepth": screen.pixelDepth,
                 "resolution": screen.width + "x" + screen.height,
-                "monochrome":  window.matchMedia("(monochrome)").matches,
+                "monochrome": window.matchMedia("(monochrome)").matches,
                 "pixelRatio": window.devicePixelRatio,
                 "touchScreen": window.matchMedia("(pointer: coarse)").matches,
                 "retinaDisplay": window.devicePixelRatio >= 2,
