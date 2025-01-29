@@ -54,10 +54,6 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
-        let userImageLink = "https://cdna.artstation.com/p/assets/images/images/012/488/936/large/marcin-bystrzycki-70.jpg?1535043998";
-        let downloadSize = 564846 * 8; //bytes
-        let time_start, end_time;
-
         let dandidate, connection;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
@@ -73,6 +69,10 @@
 
         async function MeasureConnectionSpeed() {
             return new Promise((resolve) => {
+                let imageUrl = "https://cdna.artstation.com/p/assets/images/images/012/488/936/large/marcin-bystrzycki-70.jpg?1535043998";
+                let fileSizeInBits = 564846 * 8; //bytes
+                const startTime = performance.now();
+
                 fetch(imageUrl, { method: "GET", cache: "no-cache" })
                     .then(response => response.blob())
                     .then(() => {
