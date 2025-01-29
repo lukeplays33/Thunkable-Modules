@@ -54,9 +54,10 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
+        let connection;
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             if ("connection" in navigator) {
-                const connection = navigator.connection;
+                connection = navigator.connection;
 
                 console.log("Effective Type:", connection.effectiveType); // 4g, 3g, etc.
                 console.log("Downlink Speed:", connection.downlink, "Mbps"); // Estimated bandwidth
