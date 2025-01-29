@@ -72,7 +72,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             if ("connection" in navigator) {
                 connection = navigator.connection;
-                console.log("type: ", connection.type); // true/false
+                alert("type: ", connection.type); // true/false
             }
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
