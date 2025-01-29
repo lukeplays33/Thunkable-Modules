@@ -54,6 +54,10 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
+        let userImageLink = "https://cdna.artstation.com/p/assets/images/images/012/488/936/large/marcin-bystrzycki-70.jpg?1535043998";
+        let downloadSize = 564.846  * 8; //bytes
+        let time_start, end_time;
+
         let dandidate, connection;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
@@ -69,22 +73,25 @@
 
         async function MeasureConnectionSpeed() {
             return new Promise((resolve) => {
-                let imageUrl = "https://cdna.artstation.com/p/assets/images/images/012/488/936/large/marcin-bystrzycki-70.jpg?1535043998";
-                let fileSizeInBits = 564846 * 8; //bytes
-                const startTime = performance.now();
+                let downloadImgSrc = new Image();
 
-                fetch(imageUrl, { method: "GET", cache: "no-cache" })
-                    .then(response => response.blob())
-                    .then(() => {
-                        const endTime = performance.now();
-                        const duration = (endTime - startTime) / 1000; // Convert to seconds
-                        const speedBps = fileSizeInBits / duration; // Bits per second
-                        const speedKbps = speedBps / 1024; // Kbps
-                        const speedMbps = speedKbps / 1024; // Mbps
+                downloadImgSrc.onload = function () {
+                    end_time = new Date().getTime();
 
-                        console.log(`Download Speed: ${speedMbps.toFixed(2)} Mbps`);
-                    })
-                    .catch(error => console.error("Error measuring speed:", error));
+                    let timeDuration = (end_time - time_start) / 1000;
+                    let loadedBits = downloadSize * 8;
+
+                    /* Converts a number into string
+                       using toFixed(2) rounding to 2 */
+                    let bps = (loadedBits / timeDuration).toFixed(2);
+                    let speedInKbps = (bps / 1024).toFixed(2);
+                    let speedInMbps = (speedInKbps / 1024).toFixed(2);
+                    alert("Your internet connection speed is: \n"
+                        + bps + " bps\n" + speedInKbps
+                        + " kbps\n" + speedInMbps + " Mbps\n");
+                };
+                time_start = new Date().getTime();
+                downloadImgSrc.src = userImageLink;
             });
         }
 
