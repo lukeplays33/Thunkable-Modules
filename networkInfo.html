@@ -101,6 +101,24 @@
                 connection = navigator.connection;
                 //console.log(await MeasureConnectionSpeed())
 
+                connection.onchange = function () {
+                    ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                        "type": 'change'
+                    }));
+                }
+
+                window.ononline = function () {
+                    ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                        "type": 'connectionChange'
+                    }));
+                }
+
+                window.onofline = function () {
+                    ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                        "type": 'connectionChange'
+                    }));
+                }
+
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     "mDNS": dandidate.address,
                     "port": dandidate.port,
