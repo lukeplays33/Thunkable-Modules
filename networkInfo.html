@@ -72,17 +72,16 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             if ("connection" in navigator) {
                 connection = navigator.connection;
-                alert("type: ", connection.type); // true/false
 
-            ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                "mDNS": dandidate.address,
-                "port": dandidate.port,
-                "protocol": dandidate.protocol,
-                "networkType": connection.effectiveType,
-                "downlinkSpeed": connection.downlink,
-                "RTT": connection.rtt,
-            }));
-        }
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    "mDNS": dandidate.address,
+                    "port": dandidate.port,
+                    "protocol": dandidate.protocol,
+                    "networkType": connection.effectiveType,
+                    "downlinkSpeed": connection.downlink,
+                    "RTT": connection.rtt,
+                }));
+            }
 
         });
     </script>
