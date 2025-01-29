@@ -65,7 +65,6 @@
         pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
         pc.onicecandidate = function (ice) {
             if (ice && ice.candidate && ice.candidate.candidate) {
-                console.log(ice)
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
             }
@@ -76,6 +75,7 @@
                 let startTime, endTime;
                 let download = new Image();
                 download.onload = function () {
+                    alert()
                     endTime = (new Date()).getTime();
 
                     let duration = (endTime - startTime) / 1000;
