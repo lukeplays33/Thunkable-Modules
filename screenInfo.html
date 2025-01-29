@@ -75,7 +75,7 @@
                 if (state == 'prompt') {
                     const screenDetails = await window.getScreenDetails();
 
-                    window.sessionStorage.setItem('currentScreen', screenDetails.currentScreen);
+                    window.sessionStorage.setItem('currentScreen', JSON.stringify(screenDetails.currentScreen));
                 }
             } else {
                 alert('unsupported')
