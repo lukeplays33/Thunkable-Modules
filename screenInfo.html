@@ -61,10 +61,10 @@
             alert('unsupported')
         }
 
-        let window;
+        let page;
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            window = window.open(window.location.href)
+            page = window.open(window.location.href)
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "colorDepth": screen.colorDepth,
                 "pixelDepth": screen.pixelDepth,
