@@ -55,11 +55,30 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
-        if ('getScreenDetails' in window) {
-            // The Window Management API is supported.
-        } else {
-            alert('unsupported')
+        async function getWindowManagementPermissionState() {
+            let state;
+            // The new permission name.
+            try {
+                ({ state } = await navigator.permissions.query({
+                    name: "window-management",
+                }));
+            } catch (err) {
+                return `${err.name}: ${err.message}`;
+            }
+            return state;
         }
+
+        document.querySelector("button").addEventListener("click", async () => {
+            if ('getScreenDetails' in window) {
+                // The Window Management API is supported.
+                const state = await getWindowManagementPermissionState();
+                if (state == 'prompt') {
+                    alert(state)
+                }
+            } else {
+                alert('unsupported')
+            }
+        });
 
         let page;
 
