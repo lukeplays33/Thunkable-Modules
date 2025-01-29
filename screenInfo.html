@@ -74,6 +74,8 @@
                 const state = await getWindowManagementPermissionState();
                 if (state == 'prompt') {
                     const screenDetails = await window.getScreenDetails();
+
+                    window.sessionStorage.setItem('currentScreen', screenDetails.currentScreen);
                 }
             } else {
                 alert('unsupported')
@@ -92,6 +94,7 @@
                 "pixelRatio": window.devicePixelRatio,
                 "touchScreen": window.matchMedia("(pointer: coarse)").matches,
                 "retinaDisplay": window.devicePixelRatio >= 2,
+                "currentScreen": window.sessionStorage.getItem('currentScreen'),
                 colorGamut: window.matchMedia("(color-gamut: srgb)").matches ? "srgb" : window.matchMedia("(color-gamut: p3)").matches ? "p3" : window.matchMedia("(color-gamut: rec2020)").matches ? "rec2020" : "unknown",
             }));
 
