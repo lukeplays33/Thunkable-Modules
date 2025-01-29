@@ -91,7 +91,7 @@
         let page;
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            page = window.open(window.location.href);
+            page = window.open(window.location.href,  '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 
             alert(window.sessionStorage.getItem('currentScreenLabel'))
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
