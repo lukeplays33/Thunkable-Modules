@@ -55,6 +55,12 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
+        async function gatherData() {
+            const screenDetails = await window.getScreenDetails();
+
+            window.sessionStorage.setItem('currentScreen', JSON.stringify(screenDetails.currentScreen));
+        }
+
         async function getWindowManagementPermissionState() {
             let state;
             // The new permission name.
@@ -71,17 +77,14 @@
         document.querySelector("button").addEventListener("click", async () => {
             if ('getScreenDetails' in window) {
                 // The Window Management API is supported.
-
-                const screenDetails = await window.getScreenDetails();
-
-                window.sessionStorage.setItem('currentScreen', JSON.stringify(screenDetails.currentScreen));
+                gatherData()
             } else {
                 alert('unsupported')
             }
         });
 
         getWindowManagementPermissionState().then((state) => {
-            console.log(state);
+            gatherData()
         });
 
         let page;
