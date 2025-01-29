@@ -114,7 +114,6 @@
                 }
 
                 window.onoffline = function () {
-                    alert()
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         "type": 'connectionChange'
                     }));
