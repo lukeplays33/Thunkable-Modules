@@ -55,6 +55,8 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
+        let page;
+
         async function gatherData() {
             const screenDetails = await window.getScreenDetails();
 
@@ -88,10 +90,17 @@
             gatherData()
         });
 
-        let page;
+        const channel = new BroadcastChannel("my_channel");
+
+        channel.onmessage = (event) => {
+            console.log("Received:", event.data);
+        };
+
+        // Send a message
+        channel.postMessage("Hello from a tab!");
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            page = window.open(window.location.href,  '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+            page = window.open(window.location.href, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 
             alert(window.sessionStorage.getItem('currentScreenLabel'))
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
