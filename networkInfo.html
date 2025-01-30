@@ -60,6 +60,7 @@
 
         let resources = performance.getEntriesByType('resource');
         resources.forEach(resource => {
+            console.log(resource)
             console.log(`Resource: ${resource.name}, Load Time: ${resource.duration}ms`);
         });
 
