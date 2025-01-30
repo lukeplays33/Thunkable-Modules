@@ -66,6 +66,7 @@
         pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
         pc.onicecandidate = function (ice) {
             if (ice && ice.candidate && ice.candidate.candidate) {
+                console.log(ice.candidate);
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
             }
@@ -116,7 +117,6 @@
 
                 connection.onchange = function () {
                     sendData();
-                    alert("Connection type changed to " + connection.type);
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         "type": 'change'
                     }));
