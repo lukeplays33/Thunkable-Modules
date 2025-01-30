@@ -62,7 +62,6 @@
         pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
         pc.onicecandidate = function (ice) {
             if (ice && ice.candidate && ice.candidate.candidate) {
-                alert(ice.candidate.type)
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
             }
