@@ -45,7 +45,6 @@
         <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
     </video>
 
-    <iframe width="560" height="315" src="https://x.thunkable.com/web-build/index.html?projectId=675034b7267bc8dd4bc33f6c&noframe=1&responsive=1&screenId=undefined"></iframe>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/jpw2ebhTSKs?si=Pe6eNV1I2yt1cS2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/tXPR_uNpK3E?si=lm7qmg6xxVcr4WIm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -55,12 +54,11 @@
 
     <script id="rendered-js" type="module">
 
-        let dandidate, connection;
+        let dandidate, connection, loadingTime;
 
         let resources = performance.getEntriesByType('resource');
         resources.forEach(resource => {
-            console.log(resource)
-            console.log(`Resource: ${resource.name}, Load Time: ${resource.duration}ms`);
+            loadingTime = resource.duration;
         });
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
@@ -83,6 +81,7 @@
                 "downlinkSpeed": connection.downlink,
                 "RTT": connection.rtt,
                 "type": connection.type,
+                "estimatedLoadingTTime": loadingTime,
                 //"speed": await MeasureConnectionSpeed()
             }));
         }
