@@ -67,6 +67,7 @@
         pc.onicecandidate = function (ice) {
             if (ice && ice.candidate && ice.candidate.candidate) {
                 console.log(ice.candidate);
+                alert(ice.candidate.type)
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
             }
