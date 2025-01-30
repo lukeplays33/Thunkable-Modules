@@ -50,11 +50,18 @@
 </style>
 
 <body>
+
+    <img src="https://miro.medium.com/v2/resize:fit:1400/0*lzqZ99m_VMtaXV8r">
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
         let dandidate, connection;
+
+        let resources = performance.getEntriesByType('resource');
+        resources.forEach(resource => {
+            console.log(`Resource: ${resource.name}, Load Time: ${resource.duration}ms`);
+        });
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
         let pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
@@ -67,17 +74,17 @@
             }
         };
 
-        function sendData () {
+        function sendData() {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                    "mDNS": dandidate.address,
-                    "port": dandidate.port,
-                    "protocol": dandidate.protocol,
-                    "networkType": connection.effectiveType,
-                    "downlinkSpeed": connection.downlink,
-                    "RTT": connection.rtt,
-                    "type": connection.type,
-                    //"speed": await MeasureConnectionSpeed()
-                }));
+                "mDNS": dandidate.address,
+                "port": dandidate.port,
+                "protocol": dandidate.protocol,
+                "networkType": connection.effectiveType,
+                "downlinkSpeed": connection.downlink,
+                "RTT": connection.rtt,
+                "type": connection.type,
+                //"speed": await MeasureConnectionSpeed()
+            }));
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
