@@ -116,7 +116,7 @@
 
                 connection.onchange = function () {
                     sendData();
-                    alert("Connection type changed to " + connection.effectiveType);
+                    alert("Connection type changed to " + connection.type);
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         "type": 'change'
                     }));
