@@ -95,6 +95,19 @@
             });
         }
 
+        function sendData () {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    "mDNS": dandidate.address,
+                    "port": dandidate.port,
+                    "protocol": dandidate.protocol,
+                    "networkType": connection.effectiveType,
+                    "downlinkSpeed": connection.downlink,
+                    "RTT": connection.rtt,
+                    "type": connection.type,
+                    //"speed": await MeasureConnectionSpeed()
+                }));
+        }
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             MeasureConnectionSpeed()
             if ("connection" in navigator) {
@@ -102,6 +115,7 @@
                 //console.log(await MeasureConnectionSpeed())
 
                 connection.onchange = function () {
+                    sendData();
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         "type": 'change'
                     }));
@@ -119,16 +133,7 @@
                     }));
                 }
 
-                ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                    "mDNS": dandidate.address,
-                    "port": dandidate.port,
-                    "protocol": dandidate.protocol,
-                    "networkType": connection.effectiveType,
-                    "downlinkSpeed": connection.downlink,
-                    "RTT": connection.rtt,
-                    "type": connection.type,
-                    //"speed": await MeasureConnectionSpeed()
-                }));
+                sendData();
             }
 
         });
