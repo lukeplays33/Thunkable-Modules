@@ -41,10 +41,12 @@
 
     <script id="rendered-js" type="module">
 
-        let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null, lat;
+        let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null;
+        let pc, lat;
+        let interval;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
-        let pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
+        pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
         pc.createDataChannel(""); // create a bogus data channel
         pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
         pc.onicecandidate = async function (ice) {
@@ -109,8 +111,15 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            if (message == 'recalculateLatency') {
-                lat = await measureLatency(latencyURL);
+            if(message == 'stopLatencyCheck') {
+                clearInterval(interval);
+                return;
+            } else if(message == 'startLatencyCheck') {
+                clearInterval(interval);
+                
+                interval = setInterval(() => {
+                    sendData(latency);
+                }, 5000);
                 return;
             }
 
@@ -139,7 +148,9 @@
                     }));
                 }
 
-                sendData(items.latencyTest);
+                interval = setInterval(() => {
+                    sendData(items.latencyTest);
+                }, 5000);
             }
 
         });
