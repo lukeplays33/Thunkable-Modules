@@ -125,7 +125,7 @@
 
                 interval = setInterval(() => {
                     sendData(items.latencyTest);
-                }, 5000);
+                }, (items.interval * 1000));
                 return;
             }
 
@@ -154,7 +154,7 @@
 
                 interval = setInterval(() => {
                     sendData(items.latencyTest);
-                }, 5000);
+                }, (items.interval * 1000));
             }
 
         });
