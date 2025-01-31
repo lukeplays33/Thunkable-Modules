@@ -82,6 +82,10 @@
                         packetLoss = (failedRequests / totalRequests) * 100;
                         console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
 
+                        ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                            "type": 'latencyChange'
+                        }));
+
                         resolve({
                             "latency": latency,
                             "jitter": jitter,
@@ -113,10 +117,10 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let items = JSON.parse(message);
 
-            if(items.type == 'stopLatencyCheck') {
+            if (items.type == 'stopLatencyCheck') {
                 clearInterval(interval);
                 return;
-            } else if(items.type == 'startLatencyCheck') {
+            } else if (items.type == 'startLatencyCheck') {
                 clearInterval(interval);
 
                 interval = setInterval(() => {
