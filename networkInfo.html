@@ -55,6 +55,7 @@
         };
 
         async function measureLatency(url) {
+            return new Promise((resolve) => {
 
             totalRequests++;
             const start = performance.now();
@@ -79,8 +80,9 @@
                     packetLoss = (failedRequests / totalRequests) * 100;
                     console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
 
-                    return latency;
+                    resolve(latency);
                 });
+            });
         }
 
         async function sendData(latencyURL) {
