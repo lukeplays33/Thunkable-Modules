@@ -55,7 +55,7 @@
         };
 
         async function measureLatency(url) {
-            let latency, totalRequests = 0, failedRequests = 0, packetLoss = 0;
+            let latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null;
 
             totalRequests++;
             const start = performance.now();
@@ -64,6 +64,13 @@
                 .then(() => {
                     latency = performance.now() - start;
                     console.log(`Latency: ${latency.toFixed(2)} ms`);
+
+                    if (lastLatency !== null) {
+                        const jitter = Math.abs(latency - lastLatency);
+                        console.log(`Jitter: ${jitter.toFixed(2)} ms`);
+                    }
+
+                    lastLatency = latency;
                 })
                 .catch(() => {
                     failedRequests++;
