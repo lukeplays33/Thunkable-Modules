@@ -30,8 +30,8 @@
     }
 
     video {
-    width: 200px;
-    height: 200px;
+        width: 200px;
+        height: 200px;
     }
 </style>
 
@@ -45,8 +45,14 @@
         <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
     </video>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/jpw2ebhTSKs?si=Pe6eNV1I2yt1cS2U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/tXPR_uNpK3E?si=lm7qmg6xxVcr4WIm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jpw2ebhTSKs?si=Pe6eNV1I2yt1cS2U"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/tXPR_uNpK3E?si=lm7qmg6xxVcr4WIm"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     <img src="https://miro.medium.com/v2/resize:fit:1400/0*lzqZ99m_VMtaXV8r">
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
@@ -54,12 +60,7 @@
 
     <script id="rendered-js" type="module">
 
-        let dandidate, connection, loadingTime;
-
-        let resources = performance.getEntriesByType('resource');
-        resources.forEach(resource => {
-            loadingTime = resource.duration;
-        });
+        let dandidate, connection;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
         let pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
@@ -70,9 +71,21 @@
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
             }
-        };
+        }; 
+        
+        async function measureLatency(url = "https://quotes-api-self.vercel.app/quote") {
+            const start = performance.now();
+            try {
+                await fetch(url, { method: "HEAD", cache: "no-store" });
+            } catch (error) {
+                console.error("Error measuring latency:", error);
+                return;
+            }
+            const latency = performance.now() - start;
+            console.log(`Latency: ${latency.toFixed(2)} ms`);
+        }
 
-        function sendData() {
+        async function sendData() {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
                 "port": dandidate.port,
@@ -82,6 +95,7 @@
                 "RTT": connection.rtt,
                 "type": connection.type,
                 "downlinkMax": connection.downlinkMax,
+                "latency": await measureLatency(),
                 //"speed": await MeasureConnectionSpeed()
             }));
         }
