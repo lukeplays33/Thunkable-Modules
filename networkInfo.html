@@ -82,7 +82,7 @@
                 return;
             }
             const latency = performance.now() - start;
-            console.log(`Latency: ${latency.toFixed(2)} ms`);
+            return latency;
         }
 
         async function sendData() {
