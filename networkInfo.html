@@ -51,26 +51,29 @@
             if (ice && ice.candidate && ice.candidate.candidate) {
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
-
-                window.setTimeout(async function () {
-                    let stats = await pc.getStats();
-                    stats.forEach((report) => {
-                        console.log(report);
-                    });
-                }, 1000);
-
             }
         };
 
         async function measureLatency(url) {
-            const start = performance.now();
-            try {
-                await fetch(url, { method: "HEAD", cache: "no-store" });
-            } catch (error) {
-                console.error("Error measuring latency:", error);
-                return;
-            }
-            const latency = performance.now() - start;
+            fetch(url, { method: "HEAD", cache: "no-store" })
+                .then(() => {
+                    const latency = performance.now() - start;
+                    console.log(`Latency: ${latency.toFixed(2)} ms`);
+
+                    if (lastLatency !== null) {
+                        const jitter = Math.abs(latency - lastLatency);
+                        console.log(`Jitter: ${jitter.toFixed(2)} ms`);
+                    }
+
+                    lastLatency = latency;
+                })
+                .catch(() => {
+                    console.log("Request failed - possible packet loss");
+                }).finally(() => {
+                    const packetLoss = (failedRequests / totalRequests) * 100;
+                    console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
+                });
+
             return latency;
         }
 
