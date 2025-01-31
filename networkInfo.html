@@ -36,25 +36,6 @@
 </style>
 
 <body>
-
-    <video id="focus" autoplay playsinline muted loop>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    </video>
-
-    <video id="focus" autoplay playsinline muted loop>
-        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-    </video>
-
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/jpw2ebhTSKs?si=Pe6eNV1I2yt1cS2U"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/tXPR_uNpK3E?si=lm7qmg6xxVcr4WIm"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-    <img src="https://miro.medium.com/v2/resize:fit:1400/0*lzqZ99m_VMtaXV8r">
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
@@ -66,23 +47,15 @@
         let pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
         pc.createDataChannel(""); // create a bogus data channel
         pc.createOffer(pc.setLocalDescription.bind(pc), noop); // create offer and set local description
-        pc.onicecandidate = function (ice) {
+        pc.onicecandidate = async function (ice) {
             if (ice && ice.candidate && ice.candidate.candidate) {
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
+
+                let stats = await pc.getStats();
+                console.log(stats)
             }
         };
-        // Monitor statistics
-        setInterval(async () => {
-            const stats = await pc.getStats();
-            stats.forEach((report) => {
-                if (report.type === "inbound-rtp" && report.kind === "video") {
-                    console.log("Packet Loss:", report.packetsLost);
-                    console.log("Jitter:", report.jitter);
-                }
-            });
-        }, 5);
-
 
         async function measureLatency(url = "https://quotes-api-self.vercel.app/quote") {
             const start = performance.now();
@@ -96,7 +69,7 @@
             return latency;
         }
 
-        async function sendData() {
+        async function sendData(latencyURL = "https://quotes-api-self.vercel.app/quote") {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
                 "port": dandidate.port,
@@ -106,7 +79,7 @@
                 "RTT": connection.rtt,
                 "type": connection.type,
                 "downlinkMax": connection.downlinkMax,
-                "latency": await measureLatency(),
+                "latency": await measureLatency(latencyURL),
                 //"speed": await MeasureConnectionSpeed()
             }));
         }
