@@ -111,19 +111,19 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            if(message == 'stopLatencyCheck') {
+            let items = JSON.parse(message);
+
+            if(items.type == 'stopLatencyCheck') {
                 clearInterval(interval);
                 return;
-            } else if(message == 'startLatencyCheck') {
+            } else if(items.type == 'startLatencyCheck') {
                 clearInterval(interval);
 
                 interval = setInterval(() => {
-                    sendData(latency);
+                    sendData(items.latencyTest);
                 }, 5000);
                 return;
             }
-
-            let items = JSON.parse(message);
 
             if ("connection" in navigator) {
                 connection = navigator.connection;
