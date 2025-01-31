@@ -41,7 +41,7 @@
 
     <script id="rendered-js" type="module">
 
-        let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null;
+        let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null, lat;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
         let pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
@@ -57,40 +57,41 @@
         async function measureLatency(url) {
             return new Promise((resolve) => {
 
-            totalRequests++;
-            const start = performance.now();
+                totalRequests++;
+                const start = performance.now();
 
-            fetch(url, { method: "HEAD", cache: "no-store" })
-                .then(() => {
-                    latency = performance.now() - start;
-                    console.log(`Latency: ${latency.toFixed(2)} ms`);
+                fetch(url, { method: "HEAD", cache: "no-store" })
+                    .then(() => {
+                        latency = performance.now() - start;
+                        console.log(`Latency: ${latency.toFixed(2)} ms`);
 
-                    if (lastLatency !== null) {
-                        const jitter = Math.abs(latency - lastLatency);
-                        console.log(`Jitter: ${jitter.toFixed(2)} ms`);
-                    }
+                        if (lastLatency !== null) {
+                            const jitter = Math.abs(latency - lastLatency);
+                            console.log(`Jitter: ${jitter.toFixed(2)} ms`);
+                        }
 
-                    lastLatency = latency;
-                })
-                .catch(() => {
-                    failedRequests++;
-                    console.log("Request failed - possible packet loss");
-                })
-                .finally(() => {
-                    packetLoss = (failedRequests / totalRequests) * 100;
-                    console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
+                        lastLatency = latency;
+                    })
+                    .catch(() => {
+                        failedRequests++;
+                        console.log("Request failed - possible packet loss");
+                    })
+                    .finally(() => {
+                        packetLoss = (failedRequests / totalRequests) * 100;
+                        console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
 
-                    resolve({
-                        "latency": latency,
-                        "jitter": jitter,
-                        "packetLoss": packetLoss
+                        resolve({
+                            "latency": latency,
+                            "jitter": jitter,
+                            "packetLoss": packetLoss
+                        });
                     });
-                });
             });
         }
 
         async function sendData(latencyURL) {
-            let lat = await measureLatency(latencyURL);
+            lat = await measureLatency(latencyURL);
+
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
                 "port": dandidate.port,
@@ -108,6 +109,11 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            if (message == 'recalculateLatency') {
+                lat = await measureLatency(latencyURL);
+                return;
+            }
+
             let items = JSON.parse(message);
 
             if ("connection" in navigator) {
