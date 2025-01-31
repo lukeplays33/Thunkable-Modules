@@ -52,11 +52,12 @@
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
 
-                let stats = await pc.getStats();
-                stats.forEach((report) => {
-                    console.log("Packet Loss:", report.packetsLost);
-                    console.log("Jitter:", report.jitter);
-                });
+                window.setTimeout(async function () {
+                    let stats = await pc.getStats();
+                    stats.forEach((report) => {
+                        console.log(report);
+                    });
+                }, 1000);
 
             }
         };
