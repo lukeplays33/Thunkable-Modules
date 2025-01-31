@@ -82,8 +82,10 @@
         }
 
         async function sendData(latencyURL) {
-            await measureLatency(latencyURL)
-            
+            let int = setInterval(() => {
+                measureLatency(latencyURL)
+            }, 5000);
+
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
                 "port": dandidate.port,
