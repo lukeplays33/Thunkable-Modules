@@ -65,11 +65,9 @@
                 fetch(url, { method: "HEAD", cache: "no-store" })
                     .then(() => {
                         latency = performance.now() - start;
-                        console.log(`Latency: ${latency.toFixed(2)} ms`);
 
                         if (lastLatency !== null) {
                             jitter = Math.abs(latency - lastLatency);
-                            console.log(`Jitter: ${jitter.toFixed(2)} ms`);
                         }
 
                         lastLatency = latency;
@@ -80,7 +78,6 @@
                     })
                     .finally(() => {
                         packetLoss = (failedRequests / totalRequests) * 100;
-                        console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
 
                         ThunkableWebviewerExtension.postMessage(JSON.stringify({
                             "type": 'latencyChange'
@@ -132,7 +129,6 @@
 
             if ("connection" in navigator) {
                 connection = navigator.connection;
-                //console.log(await MeasureConnectionSpeed())
 
                 connection.onchange = function () {
                     sendData(items.latencyTest);
