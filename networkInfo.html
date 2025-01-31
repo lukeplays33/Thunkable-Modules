@@ -54,14 +54,14 @@
 
                 let stats = await pc.getStats();
                 stats.forEach((report) => {
-                        console.log("Packet Loss:", report.packetsLost);
-                        console.log("Jitter:", report.jitter);
+                    console.log("Packet Loss:", report.packetsLost);
+                    console.log("Jitter:", report.jitter);
                 });
 
             }
         };
 
-        async function measureLatency(url = "https://quotes-api-self.vercel.app/quote") {
+        async function measureLatency(url) {
             const start = performance.now();
             try {
                 await fetch(url, { method: "HEAD", cache: "no-store" });
@@ -73,7 +73,7 @@
             return latency;
         }
 
-        async function sendData(latencyURL = "https://quotes-api-self.vercel.app/quote") {
+        async function sendData(latencyURL) {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
                 "port": dandidate.port,
@@ -89,12 +89,14 @@
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            let items = JSON.parse(message);
+
             if ("connection" in navigator) {
                 connection = navigator.connection;
                 //console.log(await MeasureConnectionSpeed())
 
                 connection.onchange = function () {
-                    sendData();
+                    sendData(items.latencyTest);
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         "type": 'change'
                     }));
@@ -112,7 +114,7 @@
                     }));
                 }
 
-                sendData();
+                sendData(items.latencyTest);
             }
 
         });
