@@ -78,13 +78,12 @@
                 .finally(() => {
                     packetLoss = (failedRequests / totalRequests) * 100;
                     console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
+
+                    return latency;
                 });
         }
 
         async function sendData(latencyURL) {
-            let int = setInterval(() => {
-                measureLatency(latencyURL)
-            }, 5000);
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
@@ -95,7 +94,7 @@
                 "RTT": connection.rtt,
                 "type": connection.type,
                 "downlinkMax": connection.downlinkMax,
-                "latency": latency,
+                "latency": await measureLatency(latencyURL),
                 //"speed": await MeasureConnectionSpeed()
             }));
         }
