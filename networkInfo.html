@@ -41,7 +41,7 @@
 
     <script id="rendered-js" type="module">
 
-        let dandidate, connection;
+        let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
         let pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
@@ -55,7 +55,6 @@
         };
 
         async function measureLatency(url) {
-            let latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null;
 
             totalRequests++;
             const start = performance.now();
@@ -80,10 +79,11 @@
                     packetLoss = (failedRequests / totalRequests) * 100;
                     console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
                 });
-            return latency;
         }
 
         async function sendData(latencyURL) {
+            await measureLatency(latencyURL)
+            
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "mDNS": dandidate.address,
                 "port": dandidate.port,
@@ -93,7 +93,7 @@
                 "RTT": connection.rtt,
                 "type": connection.type,
                 "downlinkMax": connection.downlinkMax,
-                "latency": await measureLatency(latencyURL),
+                "latency": latency,
                 //"speed": await MeasureConnectionSpeed()
             }));
         }
