@@ -42,7 +42,7 @@
     <script id="rendered-js" type="module">
 
         let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null;
-        let pc, lat;
+        let pc, lat, noop;
         let interval;
 
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
@@ -116,7 +116,7 @@
                 return;
             } else if(message == 'startLatencyCheck') {
                 clearInterval(interval);
-                
+
                 interval = setInterval(() => {
                     sendData(latency);
                 }, 5000);
