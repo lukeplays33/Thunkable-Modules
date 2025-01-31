@@ -55,25 +55,24 @@
         };
 
         async function measureLatency(url) {
+            let latency, totalRequests = 0, failedRequests = 0, packatLoss = 0;
+
+            totalRequests++;
+            const start = performance.now();
+
             fetch(url, { method: "HEAD", cache: "no-store" })
                 .then(() => {
-                    const latency = performance.now() - start;
+                    latency = performance.now() - start;
                     console.log(`Latency: ${latency.toFixed(2)} ms`);
-
-                    if (lastLatency !== null) {
-                        const jitter = Math.abs(latency - lastLatency);
-                        console.log(`Jitter: ${jitter.toFixed(2)} ms`);
-                    }
-
-                    lastLatency = latency;
                 })
                 .catch(() => {
+                    failedRequests++;
                     console.log("Request failed - possible packet loss");
-                }).finally(() => {
-                    const packetLoss = (failedRequests / totalRequests) * 100;
+                })
+                .finally(() => {
+                    packetLoss = (failedRequests / totalRequests) * 100;
                     console.log(`Packet Loss: ${packetLoss.toFixed(2)}%`);
                 });
-
             return latency;
         }
 
