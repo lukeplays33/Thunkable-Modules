@@ -41,7 +41,7 @@
 
     <script id="rendered-js" type="module">
 
-        let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null;
+        let dandidate, connection, latency, totalRequests = 0, failedRequests = 0, packetLoss = 0, lastLatency = null, jitter;
         let pc, lat, noop;
         let interval;
 
@@ -68,7 +68,7 @@
                         console.log(`Latency: ${latency.toFixed(2)} ms`);
 
                         if (lastLatency !== null) {
-                            const jitter = Math.abs(latency - lastLatency);
+                            jitter = Math.abs(latency - lastLatency);
                             console.log(`Jitter: ${jitter.toFixed(2)} ms`);
                         }
 
