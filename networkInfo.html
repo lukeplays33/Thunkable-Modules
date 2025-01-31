@@ -116,6 +116,7 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let items = JSON.parse(message);
+            alert(items.type)
 
             if (items.type == 'stopLatencyCheck') {
                 clearInterval(interval);
