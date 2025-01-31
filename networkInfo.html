@@ -71,8 +71,19 @@
                 dandidate = ice.candidate;
                 pc.onicecandidate = noop;
             }
-        }; 
-        
+        };
+        // Monitor statistics
+        setInterval(async () => {
+            const stats = await pc.getStats();
+            stats.forEach((report) => {
+                if (report.type === "inbound-rtp" && report.kind === "video") {
+                    console.log("Packet Loss:", report.packetsLost);
+                    console.log("Jitter:", report.jitter);
+                }
+            });
+        }, 5000);
+
+
         async function measureLatency(url = "https://quotes-api-self.vercel.app/quote") {
             const start = performance.now();
             try {
