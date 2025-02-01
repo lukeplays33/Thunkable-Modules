@@ -119,6 +119,7 @@
                 return;
             } else if (items.type == 'startLatencyCheck') {
                 clearInterval(interval);
+                sendData(items.latencyTest);
 
                 interval = setInterval(() => {
                     sendData(items.latencyTest);
