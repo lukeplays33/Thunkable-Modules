@@ -62,7 +62,6 @@
             ThunkableWebviewerExtension.receiveMessage(async function (message) {
 
                 if (message == 'batteryLevel') {
-                    alert(battery.level)
                     ThunkableWebviewerExtension.postMessage(battery.level);
                 } else if (message == 'batteryCharging') {
                     ThunkableWebviewerExtension.postMessage(battery.charging);
