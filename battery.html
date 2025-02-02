@@ -61,16 +61,12 @@
 
             ThunkableWebviewerExtension.receiveMessage(async function (message) {
 
-                if (message == 'batteryLevel') {
-                    ThunkableWebviewerExtension.postMessage(battery.level);
-                } else if (message == 'batteryCharging') {
-                    ThunkableWebviewerExtension.postMessage(battery.charging);
-                } else if (message == 'batteryChargingTime') {
-                    ThunkableWebviewerExtension.postMessage(battery.chargingTime);
-                } else if (message == 'batteryDischargingTime') {
-                    ThunkableWebviewerExtension.postMessage(battery.dischargingTime);
-                }
-
+                ThunkableWebviewerExtension.postMessage(JSOn.stringify({
+                    batteryLevel: battery.level,
+                    batteryCharging: battery.charging,
+                    batteryChargingTime: battery.chargingTime,
+                    batteryDischargingTime: battery.dischargingTime
+                }));
             });
 
             battery.addEventListener('chargingchange', function (e) {
