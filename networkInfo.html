@@ -45,6 +45,16 @@
         let pc, lat, noop;
         let interval;
 
+        async function waitForOnline() {
+            if (navigator.onLine) {
+                return; // Already online, no need to wait
+            }
+
+            return new Promise((resolve) => {
+                window.addEventListener("online", resolve, { once: true });
+            });
+        }
+
         window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
         pc = new RTCPeerConnection({ iceServers: [] }), noop = function () { };
         pc.createDataChannel(""); // create a bogus data channel
@@ -130,13 +140,12 @@
             if ("connection" in navigator) {
                 connection = navigator.connection;
 
-                connection.onchange = function () {
-                    if (navigator.onLine) {
-                        sendData(items.latencyTest);
-                        ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                            "type": 'change'
-                        }));
-                    }
+                connection.onchange = async function () {
+                    await waitForOnline();
+                    sendData(items.latencyTest);
+                    ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                        "type": 'change'
+                    }));
                 }
 
                 window.ononline = function () {
