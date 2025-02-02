@@ -131,10 +131,12 @@
                 connection = navigator.connection;
 
                 connection.onchange = function () {
-                    sendData(items.latencyTest);
-                    ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                        "type": 'change'
-                    }));
+                    if (navigator.onLine) {
+                        sendData(items.latencyTest);
+                        ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                            "type": 'change'
+                        }));
+                    }
                 }
 
                 window.ononline = function () {
