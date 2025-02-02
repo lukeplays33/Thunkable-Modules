@@ -141,6 +141,7 @@
                 connection = navigator.connection;
 
                 connection.onchange = async function () {
+                    sendData(items.latencyTest);
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         "type": 'change'
                     }));
