@@ -61,7 +61,7 @@
 
             ThunkableWebviewerExtension.receiveMessage(async function (message) {
 
-                ThunkableWebviewerExtension.postMessage(JSOn.stringify({
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     batteryLevel: battery.level,
                     batteryCharging: battery.charging,
                     batteryChargingTime: battery.chargingTime,
