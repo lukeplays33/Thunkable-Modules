@@ -102,7 +102,7 @@
             });
         }
 
-        async function sendData(latencyURL) {
+        async function sendData(latencyURL, event ) {
             lat = await measureLatency(latencyURL);
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
@@ -119,6 +119,12 @@
                 "packetLoss": lat.packetLoss
                 //"speed": await MeasureConnectionSpeed()
             }));
+
+            if(event == 'connectionChange') {
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    "type": 'change'
+                }));
+            }
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
@@ -141,10 +147,7 @@
                 connection = navigator.connection;
 
                 connection.onchange = async function () {
-                    sendData(items.latencyTest);
-                    ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                        "type": 'change'
-                    }));
+                    sendData(items.latencyTest, 'connectionChange');
                 }
 
                 window.ononline = function () {
