@@ -73,7 +73,8 @@
                 const start = performance.now();
 
                 fetch(url, { method: "HEAD", cache: "no-store" })
-                    .then(() => {
+                    .then((response) => {
+                        prompt([...response.headers])
                         latency = performance.now() - start;
 
                         if (lastLatency !== null) {
