@@ -74,7 +74,7 @@
 
                 fetch(url, { method: "HEAD", cache: "no-store" })
                     .then((response) => {
-                        prompt([...response.headers])
+                        prompt(response.headers.get('Save-Data'))
                         latency = performance.now() - start;
 
                         if (lastLatency !== null) {
