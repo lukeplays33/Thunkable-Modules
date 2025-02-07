@@ -102,7 +102,7 @@
             });
         }
 
-        async function sendData(latencyURL, event ) {
+        async function sendData(latencyURL, event) {
             lat = await measureLatency(latencyURL);
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
@@ -120,7 +120,7 @@
                 //"speed": await MeasureConnectionSpeed()
             }));
 
-            if(event == 'connectionChange') {
+            if (event == 'connectionChange') {
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     "type": 'change'
                 }));
