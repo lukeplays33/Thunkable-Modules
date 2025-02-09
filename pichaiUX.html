@@ -62,6 +62,7 @@
             message = JSON.parse(message);
 
             if (message.type == 'init') {
+                alert()
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
                 pichai = new PichaiUX(JSON.parse(message.options));
                 pichai.initialize();

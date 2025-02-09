@@ -148,7 +148,23 @@
             }
         }
 
+        const mediaQueries = {
+            colorScheme: window.matchMedia("(prefers-color-scheme: dark)"),
+            reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)"),
+            prefersContrast: window.matchMedia("(prefers-contrast: more)"),
+            forcedColors: window.matchMedia("(forced-colors: active)")
+        };
 
+        // Attach listeners
+        Object.values(mediaQueries).forEach((mq) => {
+            mq.addEventListener("change", function () {
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    type: 'mediaChange',
+                    property: mq.media,
+                    value: mq.matches
+                }));
+            });
+        });
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let navigator = window.navigator;
