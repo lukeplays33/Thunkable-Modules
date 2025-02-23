@@ -61,11 +61,13 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             message = JSON.parse(message);
 
+            alert(message.type)
             if (message.type == 'init') {
+                alert()
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
                 pichai = new PichaiUX(JSON.parse(message.options));
                 pichai.initialize();
-                widnow.open(JSON.parse(message.options).bgImage)
+                alert(JSON.parse(message.options).bgImage)
 
                 await pichai.varExists('--primary');
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
