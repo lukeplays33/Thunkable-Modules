@@ -67,6 +67,7 @@
                 pichai.initialize();
 
                 await pichai.varExists('--primary');
+                alert()
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'loaded',
                 }));
