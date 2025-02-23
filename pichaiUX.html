@@ -57,17 +57,13 @@
         import { PichaiUX } from 'https://dreamforge-forging-our-dreams-in-tech.github.io/Pichai-UX/imports.js';
 
         let pichai;
-alert()
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             message = JSON.parse(message);
-
-            alert(message.type)
             if (message.type == 'init') {
-                alert()
                 document.body.style.backgroundImage = `url('${JSON.parse(message.options).bgImage}')`;
                 pichai = new PichaiUX(JSON.parse(message.options));
                 pichai.initialize();
-                alert(JSON.parse(message.options).bgImage)
 
                 await pichai.varExists('--primary');
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
