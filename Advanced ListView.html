@@ -29,30 +29,16 @@
         background-color: TRANSPARENT;
     }
 
-    #focus {
-        height: 0px;
-        width: 0px;
-        border-width: 0px;
-        border-color: TRANSPARENT;
-
-        background-color: TRANSPARENT;
-        outline: none;
-    }
-
-    #focus:focus {
-        border-width: 0px;
-        border-color: TRANSPARENT;
-
-        background-color: TRANSPARENT;
-
-        outline: none;
-    }
+#list-viewer {
+    width:100%;
+}
 </style>
 
-<body><list-viewer id="list-viewer" draggable="true">
-    <li>Test ITem1</li>
-    <li>Test ITem2</li>
-</list-viewer>
+<body>
+    <list-viewer id="list-viewer" sortable="true">
+        <li>Test ITem1</li>
+        <li>Test ITem2</li>
+    </list-viewer>
     <script src="https://thunkable.github.io/webviewer-extension/thunkableWebviewerExtension.js"
         type="text/javascript"></script>
 
