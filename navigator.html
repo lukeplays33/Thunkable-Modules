@@ -172,8 +172,8 @@
 
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
-                "browserVersion": brands[2].version,
-                "browserName": brands[2].brand,
+                "browserVersion": brands[2].version || brands[1].version || brands[0].version,
+                "browserName": brands[2].brand || brands[1].brand || brands[0].brand,
                 "cookiesEnabled": navigator.cookieEnabled,
                 "platform": String(navigator.platform).split(' ')[0],
                 "userAgent": navigator.userAgent,
