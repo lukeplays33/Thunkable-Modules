@@ -53,7 +53,7 @@
         pichai.initialize();
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            console.log(message)
+            console.log(response.listItems)
             let response = JSON.parse(message);
 
             listViewer.style.gridTemplateColumns = `repeat(${response.columns}, 1fr)`;
