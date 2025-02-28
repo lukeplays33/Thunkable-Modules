@@ -29,19 +29,11 @@
         background-color: TRANSPARENT;
     }
 
-    #list-viewer {
-        width: 100%;
+#list-viewer {
+    width:100%;
 
-        display: grid;
-    }
-
-    .handle {
-        cursor: grab;
-    }
-
-    .fa-arrows-alt:before {
-        content: "\f0b2";
-    }
+    display:grid;
+}
 </style>
 
 <body>
@@ -68,25 +60,6 @@
             listViewer.style.gap = `${response.gap}px`;
             listViewer.firstTime = true;
             listViewer.listItems = response.listItems;
-
-            let sortable = new Sortable(listViewer, {
-                handle: '.handle',
-                delay: 200, // time in milliseconds
-                delayOnTouchOnly: true,
-                animation: 150,  // Smooth dragging
-                ghostClass: 'sortable-ghost',  // Class applied to the item when it's being dragged
-                onEnd: function (evt) {
-                    let sorted = new CustomEvent("itemSorted", { //fires when an item in the listViewer is sorted, returns the new and old index and item
-                        detail: {
-                            oldIndex: evt.oldIndex,
-                            newIndex: evt.newIndex,
-                            item: evt.item.id,
-                        },
-                    });
-
-                    evt.to.dispatchEvent(sorted); // dispatches the click event only when it's clicked and not when the value is manually changed by the developer.
-                }
-            });
         });
     </script>
 </body>
