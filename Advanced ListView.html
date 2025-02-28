@@ -60,6 +60,7 @@
             listViewer.style.gap = `${response.gap}px`;
             listViewer.firstTime = true;
             listViewer.listItems = response.listItems;
+            listViewer.setAttribute('sortable', response.sortable);
         });
     </script>
 </body>
