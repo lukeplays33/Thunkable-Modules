@@ -60,8 +60,6 @@
             listViewer.style.gap = `${response.gap}px`;
             listViewer.firstTime = true;
             listViewer.listItems = response.listItems;
-            listViewer.setAttribute('sortable', false);
-            listViewer.setAttribute('multiDrag', response.multiDrag);
             listViewer.setAttribute('sortable', response.sortable);
         });
     </script>
