@@ -69,7 +69,7 @@
             listViewer.firstTime = true;
             listViewer.listItems = response.listItems;
 
-            let sortable = new Sortable(e, {
+            let sortable = new Sortable(listViewer, {
                 handle: '.handle',
                 delay: 200, // time in milliseconds
                 delayOnTouchOnly: true,
