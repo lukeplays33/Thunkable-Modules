@@ -31,6 +31,8 @@
 
 #list-viewer {
     width:100%;
+
+    display:grid;
 }
 </style>
 
@@ -49,6 +51,13 @@
 
         let pichai = new PichaiUX();
         pichai.initialize();
+
+        ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            let response = JSON.parse(message);
+
+            listViewer.style.gridTemplateColumns = `repeat(${response.columns}, 1fr)`;
+            listViewer.style.gap = `${response.gap}px`;
+        });
     </script>
 </body>
 
