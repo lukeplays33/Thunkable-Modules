@@ -170,8 +170,6 @@
             let navigator = window.navigator;
             let brands = navigator.userAgentData.brands;
 
-            console.log(brands)
-
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 "language": navigator.language,
                 "browserVersion": brands[2].version || brands[1].version || brands[0].version,
