@@ -37,7 +37,7 @@
 </style>
 
 <body>
-    <list-viewer id="list-viewer" sortable="true">
+    <list-viewer id="list-viewer" sortable="false">
         <li>Test ITem1</li>
         <li>Test ITem2</li>
     </list-viewer>
@@ -60,7 +60,27 @@
             listViewer.style.gap = `${response.gap}px`;
             listViewer.firstTime = true;
             listViewer.listItems = response.listItems;
-            listViewer.setAttribute('sortable', response.sortable);
+
+            sortable = new Sortable(listViewer, {
+            delay: 200, // time in milliseconds
+            delayOnTouchOnly: true,
+            animation: 150,  // Smooth dragging
+            ghostClass: 'sortable-ghost',  // Class applied to the item when it's being dragged
+
+            //can change with settings
+            sort: response.sortable,
+            onEnd: function (evt) {
+                let sorted = new CustomEvent("itemSorted", { //fires when an item in the listViewer is sorted, returns the new and old index and item
+                    detail: {
+                        oldIndex: evt.oldIndex,
+                        newIndex: evt.newIndex,
+                        item: evt.item.id,
+                    },
+                });
+    
+                evt.to.dispatchEvent(sorted); // dispatches the click event only when it's clicked and not when the value is manually changed by the developer.
+            }
+        });
         });
     </script>
 </body>
