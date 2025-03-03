@@ -74,6 +74,9 @@
                     //can change with settings
                     multiDrag: true, // Enable multi-drag
                     selectedClass: 'selected', // The class applied to the selected items
+                    fallbackTolerance: 3, // So that we can select items on mobile
+
+                    sort:true,
                     onEnd: function (evt) {
                         let sorted = new CustomEvent("itemSorted", { //fires when an item in the listViewer is sorted, returns the new and old index and item
                             detail: {
