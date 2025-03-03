@@ -52,6 +52,7 @@
         import { PichaiUX } from 'https://dreamforge-forging-our-dreams-in-tech.github.io/Pichai-UX/imports.js';
 
         let listViewer = document.getElementById('list-viewer');
+        let sortable;
 
         let pichai = new PichaiUX();
         pichai.initialize();
@@ -76,7 +77,6 @@
                     selectedClass: 'selected', // The class applied to the selected items
                     fallbackTolerance: 3, // So that we can select items on mobile
 
-                    sort:true,
                     onEnd: function (evt) {
                         let sorted = new CustomEvent("itemSorted", { //fires when an item in the listViewer is sorted, returns the new and old index and item
                             detail: {
