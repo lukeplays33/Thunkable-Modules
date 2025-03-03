@@ -19,6 +19,9 @@
 
 </head>
 <style>
+    :root {
+        --multidragOpacity:1;
+    }
     body,
     html {
         margin: 0px;
@@ -36,8 +39,9 @@
     }
 
     .selected {
-        background-color: red;
+        opacity:var(--multidragOpacity);
     }
+
 </style>
 
 <body>
@@ -54,11 +58,15 @@
         let listViewer = document.getElementById('list-viewer');
         let sortable;
 
+        let r = document.querySelector(':root');
+
         let pichai = new PichaiUX();
         pichai.initialize();
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let response = JSON.parse(message);
+
+            r.style.setProperty('--multidragOpacity', response.multiDragOpacity);
 
             listViewer.style.gridTemplateColumns = `repeat(${response.columns}, 1fr)`;
             listViewer.style.gap = `${response.gap}px`;
@@ -73,7 +81,7 @@
                     ghostClass: 'sortable-ghost',  // Class applied to the item when it's being dragged
 
                     //can change with settings
-                    multiDrag: true, // Enable multi-drag
+                    multiDrag: response.multidrag, // Enable multi-drag
                     selectedClass: 'selected', // The class applied to the selected items
                     fallbackTolerance: 3, // So that we can select items on mobile
 
