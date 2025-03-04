@@ -74,6 +74,7 @@
             listViewer.listItems = response.listItems;
 
             if (response.sortable) {
+                sortable.mount(new MultiDrag());
                 sortable = new Sortable(listViewer, {
                     delay: 200, // time in milliseconds
                     delayOnTouchOnly: true,
