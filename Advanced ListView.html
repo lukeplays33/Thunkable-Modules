@@ -63,6 +63,30 @@
         let pichai = new PichaiUX();
         pichai.initialize();
 
+        sortable = new Sortable(listViewer, {
+                    delay: 200, // time in milliseconds
+                    delayOnTouchOnly: true,
+                    animation: 150,  // Smooth dragging
+                    ghostClass: 'sortable-ghost',  // Class applied to the item when it's being dragged
+
+                    //can change with settings
+                    multiDrag: true, // Enable multi-drag
+                    selectedClass: 'selected', // The class applied to the selected items
+                    fallbackTolerance: 3, // So that we can select items on mobile
+
+                    onEnd: function (evt) {
+                        let sorted = new CustomEvent("itemSorted", { //fires when an item in the listViewer is sorted, returns the new and old index and item
+                            detail: {
+                                oldIndex: evt.oldIndex,
+                                newIndex: evt.newIndex,
+                                item: evt.item.id,
+                            },
+                        });
+
+                        evt.to.dispatchEvent(sorted); // dispatches the click event only when it's clicked and not when the value is manually changed by the developer.
+                    }
+                });
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let response = JSON.parse(message);
 
