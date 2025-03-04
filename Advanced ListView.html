@@ -74,12 +74,11 @@
             listViewer.listItems = response.listItems;
 
             if (response.sortable) {
-                sortable.mount(new MultiDrag());
                 sortable = new Sortable(listViewer, {
-                    delay: 200, // time in milliseconds
-                    delayOnTouchOnly: true,
+                    //delay: 200, // time in milliseconds
+                    //delayOnTouchOnly: true,
                     animation: 150,  // Smooth dragging
-                    ghostClass: 'sortable-ghost',  // Class applied to the item when it's being dragged
+                    //ghostClass: 'sortable-ghost',  // Class applied to the item when it's being dragged
 
                     //can change with settings
                     multiDrag: response.multidrag, // Enable multi-drag
