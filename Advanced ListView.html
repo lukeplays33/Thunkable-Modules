@@ -76,7 +76,7 @@
             listViewer.listItems = response.listItems;
 
             if (response.sortable) {
-                sortable = new Sortable(listViewer, {
+                sortable.create(listViewer, {
                     delay: 200, // time in milliseconds
                     delayOnTouchOnly: true,
                     animation: 150,  // Smooth dragging
