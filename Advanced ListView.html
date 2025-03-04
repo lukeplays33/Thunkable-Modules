@@ -58,7 +58,8 @@
         import { PichaiUX } from 'https://dreamforge-forging-our-dreams-in-tech.github.io/Pichai-UX/imports.js';
 
         let listViewer = document.getElementById('list-viewer');
-        let sortable;
+        let sortable = new Sortable();
+        sortable.mount(new MultiDrag( ))
 
         let r = document.querySelector(':root');
 
@@ -76,7 +77,7 @@
             listViewer.listItems = response.listItems;
 
             if (response.sortable) {
-                sortable.create(listViewer, {
+                Sortable.create(listlistViewer, {
                     delay: 200, // time in milliseconds
                     delayOnTouchOnly: true,
                     animation: 150,  // Smooth dragging
