@@ -58,7 +58,7 @@
         import { PichaiUX } from 'https://dreamforge-forging-our-dreams-in-tech.github.io/Pichai-UX/imports.js';
 
         let listViewer = document.getElementById('list-viewer');
-        let sortable = new Sortable();
+        let sortable = new Sortable(listViewer);
         sortable.mount(new MultiDrag())
 
         let r = document.querySelector(':root');
