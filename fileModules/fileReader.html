@@ -44,7 +44,7 @@
 
             console.log(json.file)
             if(json.type == 'base64'){
-                fileReader.readAsDataURL(URL.createObjectURL(String(json.file).replaceAll('blob: ', '')));
+                fileReader.readAsDataURL(URL.createObjectURL(String(json.file)));
             }
         });
     </script>
