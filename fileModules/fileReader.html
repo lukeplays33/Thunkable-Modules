@@ -22,27 +22,6 @@
         type="text/javascript"></script>
 
     <script id="rendered-js">
-
-        async function uploadImage(file) {
-            const apiKey = "dce5cc1003ee33398de073ac1257b561"; // Replace with your API key
-            const url = `https://api.imgbb.com/1/upload?key=${apiKey}`;
-
-            const formData = new FormData();
-            formData.append("image", file);
-
-            try {
-                const response = await fetch(url, {
-                    method: "POST",
-                    body: formData,
-                });
-
-                const result = await response.json();
-                return result.data.url;
-            } catch (error) {
-                console.error("Upload failed:", error);
-            }
-        }
-
         let fileReader = new FileReader();
 
         fileReader.onload = function (e) {
@@ -63,12 +42,8 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
 
-
-            console.log(json.file)
-            let blob = uploadImage(json.file);
-
-            if (json.type == 'base64') {
-                fileReader.readAsDataURL(blob);
+            if(json.type == 'base64'){
+                fileReader.readAsDataURL(json.file);
             }
         });
     </script>
