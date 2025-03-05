@@ -31,11 +31,18 @@
             }));
         }
 
+        fileReader.onerror = function (e) {
+            console.error(e)
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'error',
+                error: e
+            }));
+        }
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
 
             if(json.type == 'base64'){
-                alert()
                 fileReader.readAsDataURL(json.file);
             }
         });
