@@ -42,7 +42,7 @@
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
 
-            let blob = URL.createObjectURL(json.file);
+            let blob = await fetch(json.file).then(r => r.blob());
 
             if(json.type == 'base64'){
                 fileReader.readAsDataURL(blob);
