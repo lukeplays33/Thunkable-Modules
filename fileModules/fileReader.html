@@ -23,9 +23,21 @@
 
     <script id="rendered-js">
         let fileReader = new FileReader();
-        
+
+        fileReader.onload = function (e) {
+            ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'readed',
+                file: e.target.result
+            }));
+        }
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
+
+            if(json.type == 'base64'){
+                alert()
+                fileReader.readAsDataURL(json.file);
+            }
         });
     </script>
 
