@@ -30,10 +30,6 @@
             return new File([blob], fileName, { type: mimeType });
         }
 
-        blobUrlToFile(blobUrl, "myFile.txt", "text/plain").then(file => {
-            console.log(file);
-        });
-
         fileReader.onload = function (e) {
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'readed',
