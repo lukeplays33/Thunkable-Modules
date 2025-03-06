@@ -27,8 +27,7 @@
         async function blobUrlToFile(blobUrl, fileName, mimeType = 'application/octet-stream') {
             //const response = await fetch(blobUrl);
             //const blob = await response.blob();
-            document.body.style.backgroundImage = 'url(' + blobUrl + ')';
-            return new File([blobUrl], fileName, { type: mimeType });
+            return new Blob([String(blobUrl)], { type: 'text/plain' });
         }
 
         fileReader.onload = function (e) {
