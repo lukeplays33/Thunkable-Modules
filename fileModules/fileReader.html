@@ -54,7 +54,7 @@
                 console.log(typeof file);
 
                 if (json.type == 'base64') {
-                fileReader.readAsDataURL(URL.createObjectURL(String(file)));
+                fileReader.readAsDataURL(URL.createObjectURL(file));
             }
             });
 
