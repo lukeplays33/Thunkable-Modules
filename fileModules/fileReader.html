@@ -52,11 +52,13 @@
 
             blobUrlToFile(json.file, "myFile.txt", "text/plain").then(file => {
                 console.log(file);
+
+                if (json.type == 'base64') {
+                fileReader.readAsDataURL(URL.createObjectURL(String(file)));
+            }
             });
 
-            if (json.type == 'base64') {
-                //fileReader.readAsDataURL(URL.createObjectURL(String(json.file)));
-            }
+
         });
     </script>
 
