@@ -31,7 +31,7 @@
         }
 
         fileReader.onload = function (e) {
-            console.log(reader.result)
+            console.log(e.target.result)
             ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'readed',
                 file: e.target.result
