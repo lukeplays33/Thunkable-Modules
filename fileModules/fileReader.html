@@ -51,7 +51,7 @@
             console.log(json.file);
 
             blobUrlToFile(json.file, "myFile.txt", "text/plain").then(file => {
-                console.log(file);
+                console.log(typeof file);
 
                 if (json.type == 'base64') {
                 fileReader.readAsDataURL(URL.createObjectURL(String(file)));
