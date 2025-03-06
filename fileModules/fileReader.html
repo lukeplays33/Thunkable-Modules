@@ -50,8 +50,8 @@
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
-
-            blobUrlToFile(json.file.blob, json.file.name, json.file.mime).then(file => {
+'json.file.mime'
+            blobUrlToFile(json.file.blob, json.file.name, 'text/html').then(file => {
                 if (json.type == 'base64') {
                 fileReader.readAsDataURL(file);
             }
