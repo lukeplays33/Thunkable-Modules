@@ -50,7 +50,7 @@
             let json = JSON.parse(message);
 
             blobUrlToFile(json.file.blob, json.file.name, json.file.mime).then(file => {
-                console.log(file)
+                window.open(file)
                 if (json.type == 'base64') {
                 fileReader.readAsDataURL(file);
             }
