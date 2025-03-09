@@ -22,11 +22,19 @@
         type="text/javascript"></script>
 
     <script id="rendered-js">
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
             
             if(json.type == 'open'){
-                window.open(json.url, json.target, json.windowFeatures);
+                let newWindow = window.open(json.url, json.target, json.windowFeatures);
+
+                alert(newWindow)
+
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                type: 'windowOpened',
+                value: newWindow
+            }));
             }
 
         });
