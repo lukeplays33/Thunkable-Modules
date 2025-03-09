@@ -29,7 +29,7 @@
             if(json.type == 'open'){
                 let newWindow = window.open(json.url, json.target, json.windowFeatures);
 
-                alert(newWindow)
+                console.log(newWindow)
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'windowOpened',
