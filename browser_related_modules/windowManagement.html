@@ -55,8 +55,11 @@
                 delete tabs[json.id];
 
             } else if (json.type == 'focus') {
-                simulateClick();
-                tabs[0].focus();
+                window.setTimeout(function () {
+                    simulateClick();
+                        tabs[0].focus()
+
+                }, 3000);
 
             }
 
