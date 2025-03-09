@@ -24,6 +24,20 @@
     <script id="rendered-js">
         let tabs = {};
 
+        function simulateClick() {
+            const btn = document.createElement('button');
+            document.body.appendChild(btn);
+
+            // Create a fake mouse click event
+            const event = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+            });
+            btn.dispatchEvent(event);
+
+            document.body.removeChild(btn);
+        }
+
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
 
@@ -36,12 +50,12 @@
                 }));
 
                 tabs[Object.keys(tabs).length] = newWindow;
-            } else if(json.type == 'close') {
+            } else if (json.type == 'close') {
                 tabs[json.id].close();
                 delete tabs[json.id];
 
             } else if (json.type == 'focus') {
-                alert()
+                simulateClick();
                 tabs[json.id].focus();
 
             }
