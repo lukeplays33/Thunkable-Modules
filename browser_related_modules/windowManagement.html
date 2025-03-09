@@ -42,8 +42,9 @@
 
                 tabs[Object.keys(tabs).length] = newWindow;
             } else if (json.type == 'close') {
-                tabs[json.id].close();
-                delete tabs[json.id];
+                //tabs[json.id].close();
+                //delete tabs[json.id];
+                tabs[json.id].moveTo(100, 100);
 
             } else if (json.type == 'reopen') {
 
