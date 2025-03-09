@@ -35,8 +35,6 @@
                     windowFeatures: json.windowFeatures
                 }));
 
-                newWindow.scrollTo(0, 100);
-
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'windowOpened',
                     value: Object.keys(tabs).length
