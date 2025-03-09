@@ -33,7 +33,7 @@
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                 type: 'windowOpened',
-                value: newWindow
+                value: JSON.stringify(newWindow)
             }));
             }
 
