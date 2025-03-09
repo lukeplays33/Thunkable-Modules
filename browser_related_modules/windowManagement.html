@@ -44,6 +44,13 @@
                     type: 'windowClosed',
                     value: json.id
                 }));
+            } else if (json.type == 'focus') {
+                tabs[json.id].focus();
+
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    type: 'windowFocused',
+                    value: json.id
+                }));
             }
 
         });
