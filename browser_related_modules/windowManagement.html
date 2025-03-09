@@ -40,17 +40,9 @@
                 tabs[json.id].close();
                 delete tabs[json.id];
 
-                ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                    type: 'windowClosed',
-                    value: json.id
-                }));
             } else if (json.type == 'focus') {
                 tabs[json.id].focus();
-
-                ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                    type: 'windowFocused',
-                    value: json.id
-                }));
+                
             }
 
         });
