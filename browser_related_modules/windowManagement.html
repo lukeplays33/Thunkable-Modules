@@ -36,6 +36,14 @@
                 }));
 
                 tabs[Object.keys(tabs).length] = newWindow;
+            } else if(json.type == 'close') {
+                tabs[json.id].close();
+                delete tabs[json.id];
+
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    type: 'windowClosed',
+                    value: json.id
+                }));
             }
 
         });
