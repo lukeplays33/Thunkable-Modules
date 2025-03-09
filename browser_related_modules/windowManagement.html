@@ -29,7 +29,7 @@
 
             if (json.type == 'open') {
                 let newWindow = window.open(json.url, json.target, json.windowFeatures);
-                window.localStorage.setItem(Object.keys(tabs).length, JSON.stringify({
+                window.sessionStorage.setItem(Object.keys(tabs).length, JSON.stringify({
                     url: json.url,
                     target: json.target,
                     windowFeatures: json.windowFeatures
@@ -51,7 +51,7 @@
                     tabs[json.id].close();
                 }
 
-                let tab = JSON.parse(window.localStorage.getItem(json.id));
+                let tab = JSON.parse(window.sessionStorage.getItem(json.id));
                 let newWindow = window.open(tab.url, tab.target, tab.windowFeatures);
                 tabs[json.id] = newWindow;
 
