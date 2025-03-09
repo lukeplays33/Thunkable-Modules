@@ -26,7 +26,7 @@
             let json = JSON.parse(message);
             
             if(json.type == 'open'){
-                window.open(json.url, json.target);
+                window.open(json.url, json.target, json.windowFeatures);
             }
 
         });
