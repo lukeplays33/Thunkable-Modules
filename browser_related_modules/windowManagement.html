@@ -24,25 +24,12 @@
     <script id="rendered-js">
         let tabs = {};
 
-        function simulateClick() {
-            const btn = document.createElement('button');
-            document.body.appendChild(btn);
-
-            // Create a fake mouse click event
-            const event = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-            });
-            btn.dispatchEvent(event);
-
-            document.body.removeChild(btn);
-        }
-
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
 
             if (json.type == 'open') {
                 let newWindow = window.open(json.url, json.target, json.windowFeatures);
+                console.log(newWindow);
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'windowOpened',
@@ -54,12 +41,9 @@
                 tabs[json.id].close();
                 delete tabs[json.id];
 
-            } else if (json.type == 'focus') {
-                window.setTimeout(function () {
-                    simulateClick();
-                        tabs[0].focus()
+            } else if (json.type == 'reopen') {
+                tabs[json.id].close();
 
-                }, 3000);
 
             }
 
