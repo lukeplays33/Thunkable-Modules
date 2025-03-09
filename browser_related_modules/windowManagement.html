@@ -44,7 +44,6 @@
             } else if (json.type == 'close') {
                 tabs[json.id].close();
                 delete tabs[json.id];
-                window.localStorage.removeItem(json.id);
 
             } else if (json.type == 'reopen') {
 
