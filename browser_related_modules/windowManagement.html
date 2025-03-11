@@ -55,6 +55,7 @@
 
                 waitForClose(newWindow, e => {
                     delete tabs[json.id];
+                    console.log(json.id)
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         type: 'windowClosed',
                         value: json.id
