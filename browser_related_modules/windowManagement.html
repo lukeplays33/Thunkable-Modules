@@ -25,17 +25,18 @@
         let tabs = {};
 
         function waitForClose(win, cb) {
-                function poll() {
-                    if (win.closed) {
-                        console.log('closed')
-                        cb();
-                    }
-                    else {
-                        requestAnimationFrame(poll);
-                    }
+            alert()
+            function poll() {
+                if (win.closed) {
+                    console.log('closed')
+                    cb();
                 }
-                poll();
+                else {
+                    requestAnimationFrame(poll);
+                }
             }
+            poll();
+        }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             let json = JSON.parse(message);
@@ -53,10 +54,13 @@
                     value: json.id
                 }));
 
-                waitForClose(newWindow, e => ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                    type: 'windowClosed',
-                    value: json.id
-                })));
+                waitForClose(newWindow, e => {
+                    delete tabs[json.id];
+                    ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                        type: 'windowClosed',
+                        value: json.id
+                    }));
+                });
 
                 tabs[json.id] = newWindow;
             } else if (json.type == 'close') {
