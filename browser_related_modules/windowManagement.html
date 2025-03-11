@@ -25,13 +25,13 @@
         let tabs = {};
 
         function waitForClose(win, cb) {
-            alert(win.closed)
             function poll() {
                 if (win.closed) {
                     console.log('closed')
                     cb();
                 }
                 else {
+                    alert()
                     requestAnimationFrame(poll);
                 }
             }
