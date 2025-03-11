@@ -25,17 +25,17 @@
         let tabs = {};
 
         function waitForClose(win, cb) {
+            let int;
+            
             function poll() {
                 console.log(win.closed)
                 if (win.closed) {
                     console.log('closed')
                     cb();
                 }
-                else {
-                    requestAnimationFrame(poll());
-                }
             }
-            poll();
+
+            int = window.setInterval(poll, 2000);
         }
 
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
