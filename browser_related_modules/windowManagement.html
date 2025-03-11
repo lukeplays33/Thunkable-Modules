@@ -78,12 +78,6 @@
                 tabs[json.id] = newWindow;
 
 
-            } else if (json.type == 'isCLosed') {
-                alert(tabs[json.id].closed)
-                ThunkableWebviewerExtension.postMessage(JSON.stringify({
-                    type: 'isCLosed',
-                    value: tabs[json.id].closed
-                }));
             }
 
         });
