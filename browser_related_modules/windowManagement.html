@@ -26,12 +26,13 @@
 
         function waitForClose(win, cb) {
             function poll() {
-                console.log('polling')
+                console.log(win.closed)
                 if (win.closed) {
                     console.log('closed')
                     cb();
                 }
                 else {
+                    alert()
                     requestAnimationFrame(poll);
                 }
             }
