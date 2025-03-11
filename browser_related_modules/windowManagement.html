@@ -29,7 +29,7 @@
 
             if (json.type == 'open') {
                 let newWindow = window.open(json.url, json.target, json.windowFeatures);
-                window.sessionStorage.setItem(Object.keys(tabs).length, JSON.stringify({
+                window.sessionStorage.setItem(json.id, JSON.stringify({
                     url: json.url,
                     target: json.target,
                     windowFeatures: json.windowFeatures
@@ -37,10 +37,10 @@
 
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'windowOpened',
-                    value: Object.keys(tabs).length
+                    value: json.id
                 }));
 
-                tabs[Object.keys(tabs).length] = newWindow;
+                tabs[json.id] = newWindow;
             } else if (json.type == 'close') {
                 tabs[json.id].close();
                 delete tabs[json.id];
