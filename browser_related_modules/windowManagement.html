@@ -24,12 +24,10 @@
     <script id="rendered-js">
         let tabs = {};
 
-        ThunkableWebviewerExtension.receiveMessage(async function (message) {
-            let json = JSON.parse(message);
-
-            function waitForClose(win, cb) {
+        function waitForClose(win, cb) {
                 function poll() {
                     if (win.closed) {
+                        console.log('closed')
                         cb();
                     }
                     else {
@@ -38,6 +36,9 @@
                 }
                 poll();
             }
+
+        ThunkableWebviewerExtension.receiveMessage(async function (message) {
+            let json = JSON.parse(message);
 
             if (json.type == 'open') {
                 let newWindow = window.open(json.url, json.target, json.windowFeatures);
