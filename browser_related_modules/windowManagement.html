@@ -55,7 +55,7 @@
 
                 waitForClose(newWindow, e => {
                     delete tabs[json.id];
-                    console.log(json.id)
+
                     ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         type: 'windowClosed',
                         value: json.id
@@ -78,6 +78,11 @@
                 tabs[json.id] = newWindow;
 
 
+            } else if (json.type == 'isCLosed') {
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                    type: 'isCLosed',
+                    value: tabs[json.id].closed
+                }));
             }
 
         });
