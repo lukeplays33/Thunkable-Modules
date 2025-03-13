@@ -48,8 +48,6 @@
                     windowFeatures: json.windowFeatures
                 }));
 
-                console.log(Object.keys(sessionStorage));
-
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'windowOpened',
                     value: json.id
@@ -66,8 +64,10 @@
 
                 tabs[json.id] = newWindow;
             } else if (json.type == 'close') {
-                tabs[json.id].close();
-                delete tabs[json.id];
+                if (tabs[json.id]) {
+                    tabs[json.id].close();
+                    delete tabs[json.id];
+                }
 
             } else if (json.type == 'reopen') {
 
