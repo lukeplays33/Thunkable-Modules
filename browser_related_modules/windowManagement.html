@@ -53,13 +53,6 @@
                     value: json.id
                 }));
 
-                const checkLoad = setInterval(() => {
-                    if (newWindow && newWindow.document && newWindow.document.readyState === "complete") {
-                        clearInterval(checkLoad);
-                        console.log("New window loaded!");
-                    }
-                }, 100);
-
                 newWindow.onload = function () {
                     console.log('new window loaded');
                     console.log(window.location.href);
