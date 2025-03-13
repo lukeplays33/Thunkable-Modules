@@ -53,7 +53,11 @@
                     value: json.id
                 }));
 
-                console.log(window.outerHeight, window.innerHeight)
+                setInterval(() => {
+                    if (newWindow.outerWidth === 0 || newWindow.outerHeight === 0) {
+                        console.log("The new window is minimized or hidden.");
+                    }
+                }, 1000);
 
                 waitForClose(newWindow, e => {
                     delete tabs[json.id];
