@@ -53,11 +53,7 @@
                     value: json.id
                 }));
 
-                newWindow.onload = function () {
-                    console.log('new window loaded');
-                    console.log(window.location.href);
-                    console.log(window.outerHeight)
-                }
+                console.log(window.outerHeight, window.innerHeight)
 
                 waitForClose(newWindow, e => {
                     delete tabs[json.id];
