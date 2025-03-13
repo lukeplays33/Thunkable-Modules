@@ -55,7 +55,8 @@
 
                 newWindow.onload = function () {
                     console.log('new window loaded');
-                    console.log(window.location.href)
+                    console.log(window.location.href);
+                    console.log(window.outerHeight)
                 }
 
                 waitForClose(newWindow, e => {
