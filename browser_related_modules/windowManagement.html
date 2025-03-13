@@ -54,9 +54,9 @@
                 }));
 
 
-                console.log(parent)
+                console.log(parent.location)
                 console.log(newWindow.location.href);
-                newWindow.location.href = 'https://x.thunkable.com/dist/index.html?projectId=67cd60478912b551f53f018c&noframe=1&responsive=1&screenId=undefined'
+                newWindow.location.href = 'https://x.thunkable.com/dist/index.html?projectId=67cd60478912b551f53f018c&noframe=1&responsive=1&screenId=undefined';
 
                 waitForClose(newWindow, e => {
                     delete tabs[json.id];
