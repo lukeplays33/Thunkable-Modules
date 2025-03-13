@@ -53,11 +53,10 @@
                     value: json.id
                 }));
 
-
-                window.setTimeout(function () {
-                    console.log(newWindow.location.href);
-                    newWindow.location.href = 'https://x.thunkable.com/dist/index.html?projectId=67cd60478912b551f53f018c&noframe=1&responsive=1&screenId=undefined';
-                }, 2000);
+                newWindow.onload = function () {
+                    console.log('new window loaded');
+                    console.log(window.location.href)
+                }
 
                 waitForClose(newWindow, e => {
                     delete tabs[json.id];
