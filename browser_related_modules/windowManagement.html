@@ -81,6 +81,11 @@
 
 
             } else if (json.type == 'destroyRefrence') {
+                if (tabs[json.id]) {
+                    tabs[json.id].close();
+                    delete tabs[json.id];
+                }
+                
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                         type: 'windowDestroyed',
                         value: json.id,
