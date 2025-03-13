@@ -81,6 +81,12 @@
 
 
             } else if (json.type == 'destroyRefrence') {
+                ThunkableWebviewerExtension.postMessage(JSON.stringify({
+                        type: 'windowDestroyed',
+                        value: json.id,
+                        refrence: window.sessionStorage.getItem(json.id)
+                    }));
+
                 window.sessionStorage.removeItem(json.id);
             }
 
