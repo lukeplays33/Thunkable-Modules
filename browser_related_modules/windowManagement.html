@@ -81,7 +81,6 @@
 
 
             } else if (json.type == 'destroyRefrence') {
-                delete tabs[json.id];
                 window.sessionStorage.removeItem(json.id);
             }
 
