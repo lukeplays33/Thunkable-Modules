@@ -48,6 +48,8 @@
                     windowFeatures: json.windowFeatures
                 }));
 
+                console.log(window.sessionStorage.keys);
+
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'windowOpened',
                     value: json.id
