@@ -53,6 +53,8 @@
                     value: json.id
                 }));
 
+                console.log(window.hasFocus);
+
                 waitForClose(newWindow, e => {
                     delete tabs[json.id];
 
