@@ -40,8 +40,7 @@
         type="text/javascript"></script>
 
     <script id="rendered-js" type="module">
-        alert()
-        ThunkableWebviewerExtension.receiveMessage(async function (message) {
+        ThunkableWebviewerExtension.receiveMessage(function (message) {
             alert(message)
             navigator.storage.estimate().then((estimate) => {
                 alert()
