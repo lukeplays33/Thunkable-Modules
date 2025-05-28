@@ -42,6 +42,7 @@
     <script id="rendered-js" type="module">
         ThunkableWebviewerExtension.receiveMessage(async function (message) {
             navigator.storage.estimate().then((estimate) => {
+                alert()
                 console.log(estimate.quota, estimate.usage);
             });
 
