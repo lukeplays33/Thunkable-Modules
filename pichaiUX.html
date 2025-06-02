@@ -81,6 +81,7 @@
             } else if (message.type == 'refreshVariables') {
                 ThunkableWebviewerExtension.postMessage(JSON.stringify({
                     type: 'getVar',
+                    backgroundColor: getComputedStyle(document.querySelector(':root')).getPropertyValue('--backgroundColor'),
                     primary: getComputedStyle(document.querySelector(':root')).getPropertyValue('--primary'),
                     tertiary: getComputedStyle(document.querySelector(':root')).getPropertyValue('--tertiary'),
                     secondary: getComputedStyle(document.querySelector(':root')).getPropertyValue('--secondairy'),
